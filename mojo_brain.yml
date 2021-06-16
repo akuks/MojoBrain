@@ -1,0 +1,9 @@
+---
+secrets:
+  - 887a54c9eb605033e868725ec06c14a7cd4f8b5a
+database:
+  user: 'root'
+  pass: ''
+  dbname: 'mojobrain'
+
+
