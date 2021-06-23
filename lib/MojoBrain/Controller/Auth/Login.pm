@@ -4,9 +4,16 @@ use JSON;
 
 # This action will render a template
 sub login ($c) {
+  $c->openapi->valid_input or return;
 
-  # Render template "example/welcome.html.ep" with message
-  $c->render(msg => 'Welcome to the Mojolicious real-time web framework!');
+  my $username = $c->param('username');
+  my $password = $c->param('password');
+
+  if ( !$username or !$password) {
+    return $c->render( json => { message => 'Username or password cannot be left blank', status => 404 });
+  }
+
+  return $c->render( json =>  { message => 'It works', status => 200 } );
 }
 
 1;
