@@ -1,0 +1,57 @@
+openapi: 3.0.0
+info:
+  title: MojoBrain - Headless CMS in Mojolicious
+  version: "1"
+servers:
+  - url: /api/v1
+paths:
+  /login:
+    post:
+      summary: Login to MojoBrain
+      x-mojo-to: "Controller::Auth::Login#login"
+      operationId: userLogin
+      tags:
+        - login
+      parameters:
+        - name: username
+          in: query
+          description: email id of the user
+        - name: password
+          in: query
+          description: Password of the user
+      responses:
+        200:
+          description: User object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Login"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Login:
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        tag:
+          type: string
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
