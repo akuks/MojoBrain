@@ -11,10 +11,15 @@ sub startup ($self) {
   $self->secrets($config->{secrets});
 
   # Router
-  my $r = $self->routes;
-
+  #my $r = $self->routes;
+ 
   # Normal route to controller
-  $r->get('/')->to('Example#welcome');
+  $self->plugin(
+    OpenAPI => { 
+      schema => 'v3',
+      url     => $self->home->rel_file("mojobrain-api.yml"),
+      }
+  );
 }
 
 1;
