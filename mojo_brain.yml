@@ -1,9 +1,20 @@
 ---
 secrets:
   - 887a54c9eb605033e868725ec06c14a7cd4f8b5a
-database:
-  user: 'root'
-  pass: ''
-  dbname: 'mojobrain'
-
+app:
+  mode:
+    production:
+      app_root: /opt/MojoBrain
+      database:
+        user: mojobrain
+        password: Secret Password
+        dbname: 'mojobrain'
+    development:
+      app_root: ''
+      database:
+        user: root
+        password: ''
+        dbname: mojobrain
+apifile:
+  - mojobrain-api.yml
 
