@@ -13,7 +13,9 @@ sub login ($c) {
     return $c->render( json => { message => 'Username or password cannot be left blank', status => 404 });
   }
 
-  return $c->render( json =>  { message => 'It works', status => 200 } );
+  my $access_key = "some secret key";
+
+  return $c->render( json =>  { message => 'User login succesfully.', status => 200, access_key => $access_key } );
 }
 
 1;
