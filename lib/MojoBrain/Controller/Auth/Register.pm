@@ -13,6 +13,8 @@ sub register ($c) {
     return $c->render( json => { message => 'Username or password cannot be left blank', status => 404 });
   }
 
+  
+
   return $c->render( json =>  { message => 'User registered succesfully.', status => 200 } );
 }
 
