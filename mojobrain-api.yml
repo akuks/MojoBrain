@@ -32,6 +32,37 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /register:
+    post:
+      summary: Login to MojoBrain
+      x-mojo-to: "Controller::Auth::Login#login"
+      operationId: userRegister
+      tags:
+        - login
+      parameters:
+        - name: username
+          in: query
+          description: email id of the user
+        - name: password
+          in: query
+          description: Password of the user
+        - name: confirm_password
+          in: query
+          description: Confirm Password of the user
+      responses:
+        200:
+          description: User object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Login"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
 components:
   schemas:
     Login:
@@ -42,6 +73,20 @@ components:
         username:
           type: string
         password:
+          type: string
+        tag:
+          type: string
+    Register:
+      required:
+        - username
+        - password
+        - confirm_password
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        confirm_password:
           type: string
         tag:
           type: string
