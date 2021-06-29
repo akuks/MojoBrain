@@ -2,6 +2,7 @@
 secrets:
   - 887a54c9eb605033e868725ec06c14a7cd4f8b5a
 app:
+  name: MojoBrain
   mode:
     production:
       app_root: /opt/MojoBrain
@@ -9,6 +10,7 @@ app:
         user: mojobrain
         password: Secret Password
         dbname: 'mojobrain'
+        dsn: dbi:mysql:database=mojobrain
     development:
       app_root: ''
       database:
