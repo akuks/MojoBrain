@@ -1,3 +1,3 @@
-Mojolicious::Plugin::OpenAPI
-Mojo::JWT
-Mojolicious::Plugin::Bcrypt
+requires 'Mojolicious::Plugin::OpenAPI';
+requires 'Mojo::JWT';
+requires 'Mojolicious::Plugin::Bcrypt';
