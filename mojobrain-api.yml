@@ -2,6 +2,7 @@ openapi: 3.0.0
 info:
   title: MojoBrain - Headless CMS in Mojolicious
   version: "1"
+  description: Perl CMS for Bloggers
 servers:
   - url: /api/v1
 paths:
@@ -16,9 +17,13 @@ paths:
         - name: username
           in: query
           description: email id of the user
+          schema:
+            type: string
         - name: password
           in: query
           description: Password of the user
+          schema:
+            type: string
       responses:
         200:
           description: User object
@@ -34,21 +39,27 @@ paths:
                 $ref: "#/components/schemas/Error"
   /register:
     post:
-      summary: Login to MojoBrain
-      x-mojo-to: "Controller::Auth::Login#login"
+      summary: User Registration to MojoBrain
+      x-mojo-to: "Controller::Auth::Login#register"
       operationId: userRegister
       tags:
-        - login
+        - register
       parameters:
         - name: username
           in: query
           description: email id of the user
+          schema:
+            type: string
         - name: password
           in: query
           description: Password of the user
+          schema:
+            type: string
         - name: confirm_password
           in: query
           description: Confirm Password of the user
+          schema:
+            type: string
       responses:
         200:
           description: User object
