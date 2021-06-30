@@ -15,8 +15,9 @@ app:
       app_root: ''
       database:
         user: root
-        password: ''
+        password: admin
         dbname: mojobrain
+        dsn: dbi:mysql:database=mojobrain
 apifile:
   - mojobrain-api.yml
 
