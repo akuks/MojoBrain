@@ -5,3 +5,4 @@ requires 'JSON';
 requires 'DBIx::Class::TimeStamp';
 requires 'DBIx::Class::EncodedColumn';
 requires 'DBIx::Class::Migration';
+requires 'DBIx::Class::TimeStamp';
