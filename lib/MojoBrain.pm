@@ -25,6 +25,10 @@ sub startup ($self) {
       url     => $self->home->rel_file($api_file),
     }
   );
+
+  my $r = $self->routes;
+
+  $r->get('/admin/login')->to('Admin::Auth#signin');
 }
 
 sub _set_hooks {
