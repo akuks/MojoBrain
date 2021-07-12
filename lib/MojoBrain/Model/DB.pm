@@ -1,6 +1,7 @@
 package MojoBrain::Model::DB;
 use strict;
 
+use MojoBrain::Schema;
 use DBIx::Class();
 
 sub new {

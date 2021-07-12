@@ -11,7 +11,7 @@ sub signin_post ($c) {
   my $password = $c->param('password');
 
   unless ($c->is_user_exists($username, $password)) {
-    $c->flash( error => $c->app->msg->get_invalid_credentials_message );
+    $c->flash( credential_error => $c->app->msg->get_invalid_credentials_message );
     return $c->redirect_to('/admin/login');
   }
 
