@@ -9,7 +9,7 @@ app:
       database:
         user: mojobrain
         password: Secret Password
-        dbname: 'mojobrain'
+        dbname: mojobrain
         dsn: dbi:mysql:database=mojobrain
         schema: MojoBrain::Schema
     development:
