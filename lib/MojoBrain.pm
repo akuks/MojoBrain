@@ -1,6 +1,9 @@
 package MojoBrain;
 use Mojo::Base 'Mojolicious', -signatures;
+
 use Mojo::JWT;
+use MojoBrain::Message;
+use MojoBrain::Model::DB;
 
 # This method will run once at server start
 sub startup ($self) {
@@ -16,6 +19,11 @@ sub startup ($self) {
   $self->secrets($config->{secrets});
   $self->_set_hooks();
 
+  my $mode = $self->mode;
+  my $database = $config->{app}->{mode}->{$mode}->{database};
+
+  $self->helper( db => sub { return MojoBrain::Model::DB->new( $database ) }); # Database Handler
+  $self->helper( msg => sub { MojoBrain::Message->new() }); #Message Handler
   $self->helper( jwt => sub { Mojo::JWT->new(secret => shift->app->secrets->[0] || die) } ); # Token Handler
 
   # Normal route to controller
@@ -29,6 +37,7 @@ sub startup ($self) {
   my $r = $self->routes;
 
   $r->get('/admin/login')->to('Admin::Auth#signin');
+  $r->post('/admin/login')->to('Admin::Auth#signin_post');
 }
 
 sub _set_hooks {
