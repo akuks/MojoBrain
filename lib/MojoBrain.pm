@@ -15,6 +15,8 @@ sub startup ($self) {
 
   my $api_file = $config->{apifile}->[0];
 
+  $self->_add_routes_authorization();
+
   # Configure the application
   $self->secrets($config->{secrets});
   $self->_set_hooks();
@@ -38,6 +40,7 @@ sub startup ($self) {
 
   $r->get('/admin/login')->to('Admin::Auth#signin');
   $r->post('/admin/login')->to('Admin::Auth#signin_post');
+  $r->get('/admin/dashboard')->requires(user_authenticated => 1)->to('Admin::Dashboard#dashboard');
 }
 
 sub _set_hooks {
@@ -55,6 +58,22 @@ sub _set_hooks {
   });
 
   return $self;
+}
+
+sub _add_routes_authorization {
+  my $self = shift;
+
+  $self->routes->add_condition(
+    user_authenticated => sub {
+      my ( $r, $c ) = @_;
+      return $c->redirect_to('/?redirect=' . $c->req->headers->referrer)  
+        if ( ! $c->session('user_exists') ) ;
+      return 1;
+    }
+  );
+
+  return;
+
 }
 
 
