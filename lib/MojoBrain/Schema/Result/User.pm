@@ -41,9 +41,9 @@ __PACKAGE__->table("users");
 
 =head2 user_id
 
-  data_type: 'varchar'
+  data_type: 'bigint'
+  is_auto_increment: 1
   is_nullable: 0
-  size: 24
 
 =head2 name
 
@@ -181,7 +181,7 @@ __PACKAGE__->table("users");
 
 __PACKAGE__->add_columns(
   "user_id",
-  { data_type => "varchar", is_nullable => 0, size => 24 },
+  { data_type => "bigint", is_auto_increment => 1, is_nullable => 0 },
   "name",
   { data_type => "varchar", is_nullable => 0, size => 191 },
   "slug",
@@ -291,8 +291,8 @@ __PACKAGE__->add_unique_constraint("users_email_unique", ["email"]);
 __PACKAGE__->add_unique_constraint("users_slug_unique", ["slug"]);
 
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-07-03 23:18:16
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:7P9hL6JPSfbjIuf3xp9IBg
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-07-13 22:05:25
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:sjY5lIszmRR+eX+mGWtD/A
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
