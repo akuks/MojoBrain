@@ -28,7 +28,7 @@ sub signin_post ($c) {
     validate_user => sub {
       my ($c, $username, $password) = @_; 
       my $user_details = $c->db->resultset('User')->search(
-          {email => $username}
+        {email => $username}
       );
       
       $c->session(user_exists => $c->is_user_exists($username, $password));
@@ -49,6 +49,17 @@ sub signin_post ($c) {
     return $c->redirect_to('/admin/login');
   }
 }
+
+# User Logout
+sub logout ($c) {
+  $c->session(expires => 1);
+  $c->session(user_exists => 0);
+  $c->session(user_id => undef);
+
+  $c->flash( message => 'User logged out successfully.'); 
+  $c->redirect_to( '/' );
+}
+
 
 sub register($c) {
   $c->render(template => 'layouts/admin/register')
