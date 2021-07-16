@@ -12,6 +12,17 @@ sub startup ($self) {
   my $config = $self->plugin('NotYAMLConfig');
 
   $self->plugin('Bcrypt');
+  $self->plugin(AssetPack => {pipes => [qw(Sass Css Combine)] });
+
+  # Asset
+  $self->asset->process(
+    "app_mod.css" => (
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
+      "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons",
+      # "css/tailwind.css",
+      #"/css/app.css"
+    )
+  );
 
   my $api_file = $config->{apifile}->[0];
 
@@ -41,6 +52,7 @@ sub startup ($self) {
   $r->get('/admin/login')->to('Admin::Auth#signin');
   $r->post('/admin/login')->to('Admin::Auth#signin_post');
   $r->get('/admin/dashboard')->requires(user_authenticated => 1)->to('Admin::Dashboard#dashboard');
+  $r->get('/logout')->to('Admin::Auth#logout');
 }
 
 sub _set_hooks {
