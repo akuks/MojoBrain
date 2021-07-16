@@ -2,3 +2,4 @@ local/
 cpanfile.snapshot
 node_modules/
 package-lock.json
+assets/
