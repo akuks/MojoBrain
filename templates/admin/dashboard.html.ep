@@ -1,6 +1,23 @@
 % extends 'layouts/admin/layout';
 
-<div class="flex flex-wrap -mx-4 -mb-4 md:mb-0">
-  <div class="w-full md:w-1/3 px-4 mb-4 md:mb-0">POSTS</div>
-  <div class="w-full md:w-2/3 px-4 mb-4 md:mb-0">Don't know yet</div>
+<div class="grid grid-cols-4 gap-4">
+  <div class="h-full rounded-md ml-4">
+    <div class="flex justify-center">
+      <span class="font-bold text-2xl mt-4"><%= ucfirst($user->name) %>'s blog</span>
+    </div>
+
+    <!-- Buttons -->
+    <div class="grid grid-flow-row auto-rows-max">
+      <div>
+          %= include 'layouts/buttons/chevron_icon'
+      </div>
+      <div>
+          %= include 'layouts/buttons/edit_icon'
+      </div>
+      
+    </div>
+  </div>
+  <div class="col-span-3 bg-purple-500 h-screen rounded-md flex justify-center items-center text-white text-2xl font-extrabold">7</div>
 </div>
+
+<script src="/js/admin/left_panel.js"></script>
