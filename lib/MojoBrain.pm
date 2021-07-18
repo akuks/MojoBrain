@@ -78,9 +78,12 @@ sub _add_routes_authorization {
   $self->routes->add_condition(
     user_authenticated => sub {
       my ( $r, $c ) = @_;
-      return $c->redirect_to('/?redirect=' . $c->req->headers->referrer)  
-        if ( ! $c->session('user_exists') ) ;
-      return 1;
+      if ( ! $c->session('user_exists') ) {
+        return $c->redirect_to('/')  
+      }
+      else {
+        return 1;
+      }
     }
   );
 
