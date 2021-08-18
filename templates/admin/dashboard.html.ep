@@ -1,18 +1,27 @@
 % extends 'layouts/admin/layout';
 
 <div class="grid grid-cols-4 gap-4">
-  <div class="h-full rounded-md ml-4">
+  <div class="h-full rounded-md ml-4 mt-4">
     <div class="flex justify-center">
       <span class="font-bold text-2xl mt-4"><%= ucfirst($user->name) %>'s blog</span>
     </div>
 
     <!-- Buttons -->
-    <div class="grid grid-flow-row auto-rows-max">
-      <div>
+    <div class="flex mt-10">
+      <div class="mt-1">
           %= include 'layouts/buttons/chevron_icon'
       </div>
-      <div>
-          %= include 'layouts/buttons/edit_icon'
+      <div class="w-full ml-4 flex">
+        %= include 'layouts/buttons/edit_icon'
+        <div class="w-full ml-4 flex">
+          
+          <span class="font-bold">POSTS</span>
+          
+          <div class="w-full mt-1">
+            %= include 'layouts/buttons/plus_icon';
+          </div>
+        
+        </div>
       </div>
       
     </div>
