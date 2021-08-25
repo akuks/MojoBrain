@@ -1,32 +1,38 @@
 % extends 'layouts/admin/layout';
 
-<div class="grid grid-cols-4 gap-4">
-  <div class="h-full rounded-md ml-4 mt-4">
-    <div class="flex justify-center">
-      <span class="font-bold text-2xl mt-4"><%= ucfirst($user->name) %>'s blog</span>
+<div class="antialiased bg-body text-body font-body">
+    <div class=""> 
+      <div>
+        <nav class="lg:hidden py-6 px-6 border-b">
+          <div class="flex items-center justify-between">
+            <a class="text-2xl font-semibold" href="#">
+                <%= ucfirst($user->name) %>'s blog
+            </a>
+            <button class="navbar-burger flex items-center rounded focus:outline-none">
+              <svg class="text-white bg-cyan-500 hover:bg-cyan-600 block h-8 w-8 p-2 rounded" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                <title>Mobile menu</title>
+                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+              </svg>
+            </button>
+          </div>
+        </nav>
+
+        %= include 'admin/dashboard_left_nav';
+        <div class="mx-auto lg:ml-80">
+          <section class="pt-8 px-6">
+            <h2 class="mb-4 text-2xl font-bold">Posts</h2>
+            <div class="flex flex-wrap text-sm text-center"><a class="inline-block w-full md:w-1/2 lg:w-auto mb-4 lg:mb-0 px-4 pb-2 border-b-2 border-cyan-500 text-cyan-500" href="#">General</a><a class="inline-block w-full md:w-1/2 lg:w-auto mb-4 lg:mb-0 px-4 pb-2 text-gray-300 border-b-2 border-transparent hover:border-gray-300" href="#">Customers</a><a class="inline-block w-full md:w-1/2 lg:w-auto mb-4 lg:mb-0 px-4 pb-2 text-gray-300 border-b-2 border-transparent hover:border-gray-300" href="#">Sales</a><a class="inline-block w-full md:w-1/2 lg:w-auto px-4 pb-2 text-gray-300 border-b-2 border-transparent hover:border-gray-300" href="#">Returns</a></div>
+          </section>
+          <div>Put your table here</div>
+        </div>
+        
+      </div>
     </div>
 
-    <!-- Buttons -->
-    <div class="flex mt-10">
-      <div class="mt-1">
-          %= include 'layouts/buttons/chevron_icon'
-      </div>
-      <div class="w-full ml-4 flex">
-        %= include 'layouts/buttons/edit_icon'
-        <div class="w-full ml-4 flex">
-          
-          <span class="font-bold">POSTS</span>
-          
-          <div class="w-full mt-1">
-            %= include 'layouts/buttons/plus_icon';
-          </div>
-        
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  <div class="col-span-3 bg-purple-500 h-screen rounded-md flex justify-center items-center text-white text-2xl font-extrabold">7</div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> -->
 </div>
+
+
+
 
 <script src="/js/admin/left_panel.js"></script>
