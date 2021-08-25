@@ -49,10 +49,17 @@ sub startup ($self) {
 
   my $r = $self->routes;
 
-  $r->get('/admin/login')->to('Admin::Auth#signin');
-  $r->post('/admin/login')->to('Admin::Auth#signin_post');
-  $r->get('/admin/dashboard')->requires(user_authenticated => 1)->to('Admin::Dashboard#dashboard');
+  my $admin_get = $r->under('/admin/');
+  my $admin_post = $r->post('/admin/');
+
+  $admin_get->get('/login')->to('Admin::Auth#signin');
+  $admin_post->post('/login')->to('Admin::Auth#signin_post');
+  $admin_get->get('/dashboard')->requires(user_authenticated => 1)->to('Admin::Dashboard#dashboard');
   $r->get('/logout')->to('Admin::Auth#logout');
+
+  ### Administrator dashboard routes ###
+  $self->plugin( 'MojoBrain::Plugin::Routes::AdministratorDashboard' ); 
+
 }
 
 sub _set_hooks {
