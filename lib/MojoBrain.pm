@@ -98,5 +98,12 @@ sub _add_routes_authorization {
 
 }
 
+# Subroutines
+sub get_user_details($c) {
+  return $c->session('user_id') ? $c->db->resultset('User')->search({
+    user_id => $c->session('user_id')
+  })->first : '';
+}
+
 
 1;
