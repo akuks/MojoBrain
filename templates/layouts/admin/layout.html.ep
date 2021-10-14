@@ -16,11 +16,14 @@
     <link rel="stylesheet" href="/css/app.css" />
   </head>
 
-  <body>
+  <body class="antialiased bg-body text-body font-body">
     <a class="skip-link bg-purepink hidden" href="#nav">Skip to Navigation</a>
-    <div>
-      <%= content %>
+    <div class="">
+      <div>
+        <%= content %>
+      </div>
     </div>
+    
     <script src='/js/mojobrain.js'></script>
   </body>
 </html>
