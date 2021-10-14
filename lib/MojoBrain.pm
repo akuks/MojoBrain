@@ -99,9 +99,10 @@ sub _add_routes_authorization {
 }
 
 # Subroutines
-sub get_user_details($c) {
-  return $c->session('user_id') ? $c->db->resultset('User')->search({
-    user_id => $c->session('user_id')
+sub get_user_details($c, $user_id) {
+  print Data::Dumper::Dumper ( $c->session );
+  return $user_id ? $c->db->resultset('User')->search({
+    user_id => $user_id
   })->first : '';
 }
 
