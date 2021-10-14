@@ -1,23 +1,13 @@
 % extends 'layouts/admin/layout';
 
-<div class="antialiased bg-body text-body font-body">
-    <div class=""> 
-      <div>
-        %= include 'admin/navigation';
+<div>
+  <div class="container px-4 mx-auto">
+    %= include 'dashboard/stats';
 
-        %= include 'admin/dashboard_left_nav';
-        <div class="mx-auto lg:ml-80">
-          <section class="pt-8 px-6">
-            <h2 class="mb-4 text-2xl font-bold">Posts</h2>
-            <div class="flex flex-wrap text-sm text-center"><a class="inline-block w-full md:w-1/2 lg:w-auto mb-4 lg:mb-0 px-4 pb-2 border-b-2 border-cyan-500 text-cyan-500" href="#">General</a><a class="inline-block w-full md:w-1/2 lg:w-auto mb-4 lg:mb-0 px-4 pb-2 text-gray-300 border-b-2 border-transparent hover:border-gray-300" href="#">Customers</a><a class="inline-block w-full md:w-1/2 lg:w-auto mb-4 lg:mb-0 px-4 pb-2 text-gray-300 border-b-2 border-transparent hover:border-gray-300" href="#">Sales</a><a class="inline-block w-full md:w-1/2 lg:w-auto px-4 pb-2 text-gray-300 border-b-2 border-transparent hover:border-gray-300" href="#">Returns</a></div>
-          </section>
-          <div>Put your table here</div>
-        </div>
-        
-      </div>
+    <div class="container px-4 mx-auto">
+      %= include 'dashboard/income_stats';
     </div>
+  </div>
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> -->
+
 </div>
-
-<script src="/js/admin/left_panel.js"></script>
