@@ -18,7 +18,9 @@
 
   <body>
     <a class="skip-link bg-purepink hidden" href="#nav">Skip to Navigation</a>
-    <div><%= content %></div>
+    <div>
+      <%= content %>
+    </div>
     <script src='/js/mojobrain.js'></script>
   </body>
 </html>
