@@ -20,10 +20,19 @@
     <a class="skip-link bg-purepink hidden" href="#nav">Skip to Navigation</a>
     <div class="">
       <div>
-        <%= content %>
+        %= include 'layouts/admin/navigation';
+        %= include 'layouts/admin/dashboard_left_nav';
+        
+        <div class="mx-auto lg:ml-80">
+          %= include 'layouts/admin/dashboard_nav_top';
+          <%= content %>
+        </div>
+        
       </div>
     </div>
     
     <script src='/js/mojobrain.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="/js/charts-demo.js"></script>
   </body>
 </html>

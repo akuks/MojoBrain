@@ -1,7 +1,7 @@
 <nav class="lg:hidden py-6 px-6 border-b">
   <div class="flex items-center justify-between">
     <a class="text-2xl font-semibold" href="#">
-        <%= ucfirst($user->name) %>'s blog
+        <%= ucfirst($user->name) %>'s Brain
     </a>
     <button class="navbar-burger flex items-center rounded focus:outline-none">
       <svg class="text-white bg-cyan-500 hover:bg-cyan-600 block h-8 w-8 p-2 rounded" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
