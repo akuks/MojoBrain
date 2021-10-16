@@ -59,6 +59,7 @@ sub startup ($self) {
 
   ### Administrator dashboard routes ###
   $self->plugin( 'MojoBrain::Plugin::Routes::AdministratorDashboard' ); 
+  $self->plugin( 'MojoBrain::Plugin::Routes::Auth' );
 
 }
 
