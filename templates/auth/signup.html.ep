@@ -1,0 +1,56 @@
+% extends 'layouts/admin/layout';
+
+<main class="container mx-auto md:container md:mx-auto">
+  <div>
+    <div class="w-1/2 mx-auto mt-10 my-auto">
+      %= form_for '/signup', id => 'signup-form', method => 'POST', class => 'bg-white shadow-2xl rounded px-8 pt-6 pb-8 mb-4 mt-4' => begin 
+
+        %= csrf_field
+        <div id="signup-box" class="text-center mb-4">
+          <div id="signup-box-caption" class="font-bold text-2xl text-cyan-500"> 
+            Signup to MojoBrain
+          </div>
+        </div>
+        <div class="mb-3 mt-10">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Name</label>
+            <input type="text" id="name" name="name"
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight px-4 py-4 focus:outline-none focus:shadow-outline"
+              placeholder="Enter Full Name">
+        </div>
+
+        <div class="mb-3 mt-10">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+          <input type="email" id="email" name="email"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight px-4 py-4 focus:outline-none focus:shadow-outline"
+            placeholder="Enter Email">
+        </div>
+  
+        <div class="mb-3 mt-10">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
+          <input type="password" id="password" name="password"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight px-4 py-4 focus:outline-none focus:shadow-outline"
+            placeholder="**********">
+        </div>
+
+        <div class="mb-3 mt-10">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Confirm Password</label>
+          <input type="password" id="confim_password" name="password"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight px-4 py-4 focus:outline-none focus:shadow-outline"
+            placeholder="**********">
+        </div>
+        
+        <div class="flex items-center justify-between mt-10">
+          <button class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded focus:outline-none px-4 py-3 
+            focus:shadow-outline transition duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-110 undefined" type="submit">Sign Up
+          </button>
+          <a class="px-4 py-4 inline-block align-baseline font-bold text-sm text-cyan-500 hover:text-cyan-600 transition duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-110"
+            href="/admin/login">Sign In
+          </a>
+        </div>
+        % if ($c->flash('credential_error')) {
+          <div class="text-red-500 text-xs italic mt-3" id="credential-error"><%= $c->flash('credential_error') %></div>
+        % }
+      % end
+    </div>
+  </div>
+</main>
