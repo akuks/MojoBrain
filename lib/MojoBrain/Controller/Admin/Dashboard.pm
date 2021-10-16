@@ -4,7 +4,8 @@ use Mojo::Base 'Mojolicious::Controller', -signatures;
 sub dashboard($c) {
   my $user = $c->app->get_user_details(  $c->session('user_id') );
   
-  $c->render(template => 'admin/dashboard', user => $user);
+  $c->stash( user => $user );
+  $c->render( template => 'admin/dashboard' );
 }
 
 1;
