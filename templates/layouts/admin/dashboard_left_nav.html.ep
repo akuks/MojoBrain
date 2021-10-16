@@ -1,3 +1,4 @@
+
 <!-- Left Navigation Menu -->
 <div class="hidden lg:block navbar-menu relative z-50">
   <div class="navbar-backdrop fixed lg:hidden inset-0 bg-gray-800 opacity-10"></div>
@@ -6,7 +7,7 @@
     <div class="flex w-full items-center px-6 pb-6 mb-6 lg:border-b border-blue-50">
       <a class="text-xl font-semibold" href="#">
         <!-- <img class="h-8" src="artemis-assets/logos/artemis-logo-light.svg" alt="" width="auto"> -->
-        <%= ucfirst($user->name) %>'s Brain
+        <%= ( $user ) ? ucfirst($user->name) : '' %>'s Brain
       </a>
     </div>
     <div class="px-4 pb-6">
