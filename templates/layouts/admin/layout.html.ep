@@ -1,5 +1,6 @@
 % my $meta_description;
 % my $keywords;
+% my $user = $c->stash( 'user' );
 <html lang="en">
   <head>
     <title>MojoBrain - <%= title %></title>
@@ -20,13 +21,16 @@
     <a class="skip-link bg-purepink hidden" href="#nav">Skip to Navigation</a>
     <div class="">
       <div>
-        %= include 'layouts/admin/navigation';
-        %= include 'layouts/admin/dashboard_left_nav';
-        
-        <div class="mx-auto lg:ml-80">
-          %= include 'layouts/admin/dashboard_nav_top';
-          <%= content %>
-        </div>
+        % if ( $user ) {
+          %= include 'layouts/admin/navigation';
+          %= include 'layouts/admin/dashboard_left_nav';
+        % }    
+          <div class="mx-auto lg:ml-80">
+            % if ( $user ) {
+              %= include 'layouts/admin/dashboard_nav_top';
+            % }
+              <%= content %>
+          </div>
         
       </div>
     </div>
