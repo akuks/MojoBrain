@@ -8,3 +8,4 @@ requires 'DBIx::Class::EncodedColumn';
 requires 'DBIx::Class::Migration';
 requires 'DBIx::Class::TimeStamp';
 requires 'Mojolicious::Plugin::AssetPack';
+requires 'Email::Valid';
