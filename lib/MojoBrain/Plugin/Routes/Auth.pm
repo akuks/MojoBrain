@@ -6,6 +6,7 @@ sub register ($self, $app, $config) {
   
   my $auth = $r->under('/signup');
   $auth->get('/')->to('Auth::Register#signup');
+  $auth->post('/')->to('Auth::Register#signup_post');
 
   return;
 }
