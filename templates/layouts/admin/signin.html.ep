@@ -31,6 +31,9 @@
           <a class="px-4 py-4 inline-block align-baseline font-bold text-sm text-cyan-500 hover:text-cyan-600 transition duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-110"
             href="/#">Forgot Password?
           </a>
+          <a class="px-4 py-4 inline-block align-baseline font-bold text-sm text-cyan-500 hover:text-cyan-600 transition duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-110"
+            href="/signup">Sign Up
+          </a>
         </div>
         % if ($c->flash('credential_error')) {
           <div class="text-red-500 text-xs italic mt-3" id="credential-error"><%= $c->flash('credential_error') %></div>

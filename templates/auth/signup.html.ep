@@ -1,4 +1,6 @@
 % extends 'layouts/admin/layout';
+% my $label = 'block text-gray-700 text-sm font-bold mb-2';
+% my $input_class = 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight px-4 py-4 focus:outline-none focus:shadow-outline';
 
 <main class="container mx-auto md:container md:mx-auto">
   <div>
@@ -12,31 +14,43 @@
           </div>
         </div>
         <div class="mb-3 mt-10">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Name</label>
-            <input type="text" id="name" name="name"
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight px-4 py-4 focus:outline-none focus:shadow-outline"
-              placeholder="Enter Full Name">
+          %= label_for name => 'Name', class => $label
+          %= text_field 'name', id => 'name', class => $input_class, placeholder => 'Enter Full Name'
+          % if ( $c->flash('name_error') ) {
+            <div class="pr-6">
+              <p class="text-sm text-red-600 italic">Username only contains alphabets and cannot be left blank.</p>
+            </div>
+          % }
         </div>
-
+        
         <div class="mb-3 mt-10">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
-          <input type="email" id="email" name="email"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight px-4 py-4 focus:outline-none focus:shadow-outline"
-            placeholder="Enter Email">
+          %= label_for email => 'Email', class => $label
+          %= email_field 'email', id => 'name', class => $input_class, placeholder => 'Enter Email'
+          % if ( $c->flash('email_error') ) {
+            <div class="pr-6">
+              <p class="text-sm text-red-600 italic">Invalid Email Id.</p>
+            </div>
+          % }
         </div>
   
         <div class="mb-3 mt-10">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
-          <input type="password" id="password" name="password"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight px-4 py-4 focus:outline-none focus:shadow-outline"
-            placeholder="**********">
+          %= label_for password => 'Password', class => $label
+          %= password_field 'password', id => 'password', class => $input_class, placeholder => '**********'
+          % if ( $c->flash('pass_error') ) {
+            <div class="pr-6">
+              <p class="text-sm text-red-600 italic">Password cannot be left blank.</p>
+            </div>
+          % }
         </div>
 
         <div class="mb-3 mt-10">
-          <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Confirm Password</label>
-          <input type="password" id="confim_password" name="password"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight px-4 py-4 focus:outline-none focus:shadow-outline"
-            placeholder="**********">
+            %= label_for confirm_password => 'Confirm Password', class => $label
+            %= password_field 'confirm_password', id => 'confirm_password', class => $input_class, placeholder => '**********'
+            % if ( $c->flash('conf_pass_error') ) {
+              <div class="pr-6">
+                <p class="text-sm text-red-600 italic">Password and Confirm password must match.</p>
+              </div>
+            % }
         </div>
         
         <div class="flex items-center justify-between mt-10">
