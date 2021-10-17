@@ -3,6 +3,11 @@
 <main class="container mx-auto md:container md:mx-auto">
   <div>
     <div class="w-1/2 mx-auto mt-10 my-auto">
+      % if ( $c->flash('success') ) {
+        <div> 
+          <p class="text-sm text-green-600 italic">User created succesfully. Please login to access the application.</p>
+        </div>
+      % }
       %= form_for '/admin/login', id => 'signin-form', method => 'POST', class => 'bg-white shadow-2xl rounded px-8 pt-6 pb-8 mb-4 mt-4' => begin 
 
         %= csrf_field

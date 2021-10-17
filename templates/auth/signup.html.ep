@@ -26,6 +26,12 @@
         <div class="mb-3 mt-10">
           %= label_for email => 'Email', class => $label
           %= email_field 'email', id => 'name', class => $input_class, placeholder => 'Enter Email'
+          
+          % if ( $c->flash('email_exists') ) {
+            <div class="pr-6">
+              <p class="text-sm text-red-600 italic"> <%= $c->flash('email_exists') %> </p>
+            </div>
+          % }
           % if ( $c->flash('email_error') ) {
             <div class="pr-6">
               <p class="text-sm text-red-600 italic">Invalid Email Id.</p>
@@ -61,8 +67,8 @@
             href="/admin/login">Sign In
           </a>
         </div>
-        % if ($c->flash('credential_error')) {
-          <div class="text-red-500 text-xs italic mt-3" id="credential-error"><%= $c->flash('credential_error') %></div>
+        % if ($c->flash('generic_error')) {
+          <div class="text-red-500 text-xs italic mt-3" id="credential-error"><%= $c->flash('generic_error') %></div>
         % }
       % end
     </div>
