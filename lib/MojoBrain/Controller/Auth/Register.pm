@@ -2,6 +2,7 @@ package MojoBrain::Controller::Auth::Register;
 use Mojo::Base 'Mojolicious::Controller', -signatures;
 use JSON;
 use Email::Valid;
+use Trim;
 
 # This action will render a template
 # Not used. Need to move in a separate folder
@@ -14,8 +15,6 @@ sub register ($c) {
   if ( !$username or !$password) {
     return $c->render( json => { message => 'Username or password cannot be left blank', status => 404 });
   }
-
-  
 
   return $c->render( json =>  { message => 'User registered succesfully.', status => 200 } );
 }
@@ -33,30 +32,48 @@ sub signup_post ($c) {
 
   return $c->render(text => 'Bad CSRF token!', status => 403) if $v->csrf_protect->has_error('csrf_token');
 
+  # Check if user exists
+  if ( $c->app->db->resultset('User')->is_user_exists( $c->param('email') ) ) {
+    $c->flash( email_exists  => 'User already exists.' );
+  }
+
   $v->required('name')->like(q/[a-zA-Z]/);
   $v->required('email')->like( Email::Valid->address( $c->param('email') ) );
-  $v->required('password')->like(qr/^[a-z0-9]+$/);
-  $v->required('confirm_password')->equal_to('password') if $v->optional('password')->size(7, 500)->is_valid;
+  $v->required('password')->like(qr/^[a-zA-Z0-9]+$/);
+  $v->required('confirm_password')->equal_to('password') if $v->optional('password')->is_valid;
 
   my %options;
   
-  # Validation has any errors
+  # Parameter validation has errors
   if ( $v->has_error ) {
-    $c->flash( name_error => $v->error('name') );
-    $c->flash( email_error => $v->error('email') );
-    $c->flash( pass_error => $v->error('password') );
+    $c->flash( name_error      => $v->error('name') );
+    $c->flash( email_error     => $v->error('email') );
+    $c->flash( pass_error      => $v->error('password') );
     $c->flash( conf_pass_error => $v->error('confirm_password') );
     return $c->redirect_to( '/signup' );
   }
   
+  my $slug = $c->param('name');
+  $slug =~ s/ +//g;
+
   %options = (
-    name  => $c->param('name'),
-    email => $c->param('email')
+    name       => trim $c->param('name'),
+    email      => trim $c->param('email'),
+    password   => trim $c->app->bcrypt( $c->param('password') ),
+    created_by => $c->param('created_by') ? trim $c->param('created_by') : 'Self',
+    slug       => $slug
   );
 
-  return $c->redirect_to( '/signup' );
+  my $user = $c->app->db->resultset('User')->create_user(\%options); 
 
-  $c->render( template => 'auth/signup' )
+  if ( $user ) {
+    $c->flash( success => 'User Created Succesfully.');
+    return $c->redirect_to( '/admin/login' );
+  }
+  else {
+    $c->flash( generic_error => 'User cannot be created. Please contact support for more details.' );
+    return $c->redirect_to( '/signup' );
+  }
 }
 
 1;
