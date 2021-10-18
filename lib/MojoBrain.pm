@@ -57,9 +57,10 @@ sub startup ($self) {
   $admin_get->get('/dashboard')->requires(user_authenticated => 1)->to('Admin::Dashboard#dashboard');
   $r->get('/logout')->to('Admin::Auth#logout');
 
-  ### Administrator dashboard routes ###
+  ### Routes Plugin ###
   $self->plugin( 'MojoBrain::Plugin::Routes::AdministratorDashboard' ); 
   $self->plugin( 'MojoBrain::Plugin::Routes::Auth' );
+  $self->plugin( 'MojoBrain::Plugin::Routes::Profile' );
 
 }
 
