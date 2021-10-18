@@ -51,8 +51,8 @@
         <div>
           <button class="flex items-center">
             <div class="mr-3">
-              <p class="text-sm">Thomas Brown</p>
-              <p class="text-sm text-gray-500">Developer</p>
+              <p class="text-sm"><%= $c->stash( 'user' ) ? $c->stash( 'user' )->name : '' %></p>
+              <p class="text-sm text-gray-500">Owner</p>
             </div>
             <div class="mr-2">
               <img class="w-10 h-10 rounded-full object-cover object-right"

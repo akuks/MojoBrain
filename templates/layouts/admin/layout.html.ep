@@ -24,7 +24,7 @@
         % if ( $user ) {
           %= include 'layouts/admin/navigation';
           %= include 'layouts/admin/dashboard_left_nav';
-        % }    
+        % }
           <div class="mx-auto lg:ml-80">
             % if ( $user ) {
               %= include 'layouts/admin/dashboard_nav_top';
