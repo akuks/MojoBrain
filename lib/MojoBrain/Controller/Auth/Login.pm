@@ -18,4 +18,15 @@ sub login ($c) {
   return $c->render( json =>  { message => 'User login succesfully.', status => 200, access_key => $access_key } );
 }
 
+sub is_user_authenticated($c) {
+  if ( $c->session('user_exists') ) {
+    my $user = $c->app->get_user_details(  $c->session('user_id') );
+  
+    $c->stash( user => $user );
+    return 1;
+  }
+  $c->redirect_to('/admin/login');
+  return undef;
+}
+
 1;
