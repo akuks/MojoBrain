@@ -17,7 +17,8 @@ sub profile_post ($c) {
 
   return $c->render(text => 'Bad CSRF token!', status => 403) if $v->csrf_protect->has_error('csrf_token');
 
-  return $c->redirect_to('/profile')
+  my $user = '';
+  return $c->render ( json =>  { message => 'Profile updated succesfully.', user => $user } );
 }
 
 1;
