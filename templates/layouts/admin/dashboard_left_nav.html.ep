@@ -14,7 +14,7 @@
       <h3 class="mb-2 text-xs uppercase text-gray-200 font-medium">Main</h3>
       <ul class="mb-8 text-sm font-medium">
         <li>
-          <a class="flex items-center pl-3 py-3 pr-4 text-white bg-cyan-500 rounded" href="#">
+          <a class="flex items-center pl-3 py-3 pr-4 text-white bg-cyan-500 rounded" href="/admin/dashboard">
             <span class="inline-block mr-3">
               <svg class="text-gray-200 w-5 h-5" viewbox="0 0 18 18" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -190,7 +190,7 @@
         </li>
       </ul>
       <div class="pt-8">
-        <a class="flex items-center pl-3 py-3 pr-2 text-gray-500 hover:bg-indigo-50 rounded" href="#">
+        <a class="flex items-center pl-3 py-3 pr-2 text-gray-500 hover:bg-indigo-50 rounded" href="/profile">
           <span class="inline-block mr-4">
             <svg class="text-gray-200 w-5 h-5" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
