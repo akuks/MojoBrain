@@ -1,3 +1,136 @@
 % extends 'layouts/admin/layout';
+% my $user = $c->stash('user');
+% my $label = 'block text-gray-700 text-sm font-bold mb-2';
+% my $input_class = 'shadow appearance-none border rounded w-full py-2 px-2 text-gray-700 leading-tight px-4 py-4 focus:outline-none focus:shadow-outline';
 
-This is profile
+<main class="container mx-auto md:container md:mx-auto">
+  <div>
+    <div class="w-1/2 mx-auto mt-10 my-auto">
+
+      %= form_for '/profile', id => 'profile-form', method => 'POST', class => 'bg-white shadow-2xl rounded px-8 pt-6 pb-8 mb-4 mt-4' => begin 
+
+        %= csrf_field
+        <div id="profile-box" class="text-center mb-4">
+          <div id="login-box-caption" class="font-bold text-2xl text-cyan-500"> <%= $c->stash('user')->name %>'s Profile</div>
+        </div>
+
+        <div class="mb-2 mt-5">
+            %= label_for name => 'Full Name', class => $label
+            %= text_field 'name', id => 'name', class => $input_class, placeholder => 'Enter Full Name', value => $user->name
+        </div>
+        
+
+        <div class="mb-2 mt-5">
+            %= label_for name => 'Email', class => $label
+            %= text_field 'name', id => 'email', class => $input_class, placeholder => 'Enter Email', value => $user->email
+        </div>
+
+        <div class="mb-2 mt-5">
+            %= label_for name => 'Bio', class => $label
+            %= text_area 'user_bio', id => 'user_bio', class => $input_class, placeholder => 'Write about you, in 200 characters or less.', value => $user->user_bio, rows => 5
+        </div>
+
+        <div class="mb-2 mt-5">
+            %= label_for name => 'Website', class => $label
+            %= text_field 'website', id => 'website', class => $input_class, placeholder => 'Have a company website? Link it!', value => $user->website
+        </div>
+
+        <div class="mb-2 mt-5">
+            %= label_for name => 'Linkedin', class => $label
+            %= text_field 'linkedin', id => 'linkedin', class => $input_class, placeholder => 'URL of Linkedin profile', value => $user->linkedin
+        </div>
+
+        <div class="mb-2 mt-5">
+            %= label_for name => 'Facebook', class => $label
+            %= text_field 'facebook', id => 'facebook', class => $input_class, placeholder => 'URL of Facebook profile', value => $user->facebook
+        </div>
+
+        <div class="mb-2 mt-5">
+            %= label_for name => 'Twitter', class => $label
+            %= text_field 'twitter', id => 'twitter', class => $input_class, placeholder => 'URL of Twitter profile', value => $user->twitter
+        </div>
+
+        <div class="mb-2 mt-5">
+            %= label_for name => 'Dev.to', class => $label
+            %= text_field 'dev_to', id => 'dev_to', class => $input_class, placeholder => 'URL of dev.to profile', value => $user->dev_to
+        </div>
+
+        <div class="flex items-center justify-between mt-10">
+          <button id='submit_profile' class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded focus:outline-none px-4 py-3 focus:shadow-outline transition duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-110 undefined" type="submit">
+            Update
+          </button>
+
+        </div>
+      % end
+    </div>
+  </div>
+</main>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#profile-form').validate({
+      errorClass: "error fail-alert",
+      rules: {
+        name:  "required",
+        email: {
+          required: true,
+          email: true,
+        },
+        user_bio: {
+          maxlength: 200
+        },
+        website: {
+          url: true
+        },
+        linkedin: {
+          url: true
+        },
+        facebook: {
+          url: true
+        },
+        twitter: {
+          url: true
+        },
+        dev_to: {
+          url: true
+        }
+      }, // Rules
+      // Messages
+      message: {
+        name: {
+          required: "Please enter your name."
+        },
+        email: {
+          required: "Email cannot be left blank.",
+          email: "Please enter a valid email address"
+        },
+        use_bio: {
+          maxlength: "Bio must be limited to 200 characters"
+        },
+        website: {
+          url: "Please enter a valid url"
+        },
+        linkedin:{
+          url: "Please enter a valid url"
+        },
+        facebook:{
+          url: "Please enter a valid url"
+        },
+        twitter:{
+          url: "Please enter a valid url"
+        },
+        dev_to:{
+          url: "Please enter a valid url"
+        }
+      }
+    })
+  });
+</script>
+
+<style>
+label.error.fail-alert {
+  font-size: 0.8em;
+  color: red;
+  font-style: italic
+}
+</style>
