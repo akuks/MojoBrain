@@ -1,4 +1,4 @@
-// Burger menus
+
 document.addEventListener('DOMContentLoaded', function() {
     // open
     const burger = document.querySelectorAll('.navbar-burger');
@@ -38,3 +38,30 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
+// Submit Profile
+$('#profile-form').submit( function (e) {
+  
+  let isFormValid = $('#profile-form').valid();
+  
+  // Return If Form is invalid
+  if (! isFormValid) {
+    return
+  }
+  
+  e.preventDefault();
+  
+  let values = getFormSerialize('#profile-form');
+
+  console.log(values);
+  
+});
+
+/** 
+* Global function to serialize the form values
+*/
+function getFormSerialize(id) {
+  let form = $(id);
+
+  return $(form).serialize();
+}
