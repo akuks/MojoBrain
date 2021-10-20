@@ -22,6 +22,18 @@ sub is_user_exists ( $self, $email ) {
   return $user ? $user : undef
 }
 
+sub update_user ( $self, $user_id, $options ) {
+  my $user = $self->search({ user_id => $user_id });
+
+  return if !$user->count;
+
+  eval {
+    $user->update({ %$options });
+  };
+  
+  return $@ ? 0 : $user;
+}
+
 
 
 1;
