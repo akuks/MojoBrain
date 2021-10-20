@@ -57,6 +57,9 @@ sub startup ($self) {
   $admin_get->get('/dashboard')->requires(user_authenticated => 1)->to('Admin::Dashboard#dashboard');
   $r->get('/logout')->to('Admin::Auth#logout');
 
+  # Validation Plugin
+  $self->plugin( 'MojoBrain::Plugin::Validation' );
+
   ### Routes Plugin ###
   $self->plugin( 'MojoBrain::Plugin::Routes::AdministratorDashboard' ); 
   $self->plugin( 'MojoBrain::Plugin::Routes::Auth' );
