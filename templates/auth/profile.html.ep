@@ -21,37 +21,37 @@
         
 
         <div class="mb-2 mt-5">
-            %= label_for name => 'Email', class => $label
-            %= text_field 'name', id => 'email', class => $input_class, placeholder => 'Enter Email', value => $user->email
+            %= label_for email => 'Email', class => $label
+            %= text_field 'email', id => 'email', class => $input_class, placeholder => 'Enter Email', value => $user->email
         </div>
 
         <div class="mb-2 mt-5">
-            %= label_for name => 'Bio', class => $label
+            %= label_for user_bio => 'Bio', class => $label
             %= text_area 'user_bio', id => 'user_bio', class => $input_class, placeholder => 'Write about you, in 200 characters or less.', value => $user->user_bio, rows => 5
         </div>
 
         <div class="mb-2 mt-5">
-            %= label_for name => 'Website', class => $label
+            %= label_for website => 'Website', class => $label
             %= text_field 'website', id => 'website', class => $input_class, placeholder => 'Have a company website? Link it!', value => $user->website
         </div>
 
         <div class="mb-2 mt-5">
-            %= label_for name => 'Linkedin', class => $label
+            %= label_for linkedin => 'Linkedin', class => $label
             %= text_field 'linkedin', id => 'linkedin', class => $input_class, placeholder => 'URL of Linkedin profile', value => $user->linkedin
         </div>
 
         <div class="mb-2 mt-5">
-            %= label_for name => 'Facebook', class => $label
+            %= label_for facebook => 'Facebook', class => $label
             %= text_field 'facebook', id => 'facebook', class => $input_class, placeholder => 'URL of Facebook profile', value => $user->facebook
         </div>
 
         <div class="mb-2 mt-5">
-            %= label_for name => 'Twitter', class => $label
+            %= label_for twitter => 'Twitter', class => $label
             %= text_field 'twitter', id => 'twitter', class => $input_class, placeholder => 'URL of Twitter profile', value => $user->twitter
         </div>
 
         <div class="mb-2 mt-5">
-            %= label_for name => 'Dev.to', class => $label
+            %= label_for dev_to => 'Dev.to', class => $label
             %= text_field 'dev_to', id => 'dev_to', class => $input_class, placeholder => 'URL of dev.to profile', value => $user->dev_to
         </div>
 
