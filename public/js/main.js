@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Submit Profile
+// Submit User Profile
 $('#profile-form').submit( function (e) {
   
   let isFormValid = $('#profile-form').valid();
@@ -50,11 +50,31 @@ $('#profile-form').submit( function (e) {
   }
   
   e.preventDefault();
-  
-  let values = getFormSerialize('#profile-form');
 
-  console.log(values);
+  let request;
+
+  if ( request ) {
+    request.abort();          // Abort previous or pending requests
+  }
+
+  let form = getFormSerialize('#profile-form');
+
+  request = getAjaxRequest(form);
   
+  request.done( function ( response, textStatus, jqXHR ) {
+    console.log(response);
+  });
+
+  request.fail( function ( jqXHR, textStatus, errorThrown ) {
+     /** Log error to console*/
+    console.error(  "The following error occurred: " + textStatus, errorThrown );
+  });
+
+  /** Enable inputs again */
+  request.always(function () {
+    form['inputs'].prop("disabled", false);
+  });
+
 });
 
 /** 
@@ -63,5 +83,28 @@ $('#profile-form').submit( function (e) {
 function getFormSerialize(id) {
   let form = $(id);
 
-  return $(form).serialize();
+  let data = form.serialize();
+
+  let $inputs = form.find("input");
+
+  /** Disable inputs for the duration of the Ajax request. */
+  $inputs.prop("disabled", true);                 
+
+  return {
+    'data': data, 
+    'action': $(form).attr('action'),
+    'method': $(form).attr('method'),
+    'inputs': $inputs
+  };
+}
+
+// Create Ajax Request
+function getAjaxRequest (form) {
+  let request = $.ajax({
+    type: form['method'],
+    url: form['action'],
+    data: form['data']
+  });
+
+  return request
 }
