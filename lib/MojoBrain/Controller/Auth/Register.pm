@@ -40,7 +40,7 @@ sub signup_post ($c) {
   $v->required('name')->like(q/[a-zA-Z]/);
   $v->required('email')->like( Email::Valid->address( $c->param('email') ) );
   $v->required('password')->like(qr/^[a-zA-Z0-9]+$/);
-  $v->required('confirm_password')->equal_to('password') if $v->optional('password')->is_valid;
+  $v->required('confirm_password')->equal_to('password') if $v->required('password')->is_valid;
 
   my %options;
   
