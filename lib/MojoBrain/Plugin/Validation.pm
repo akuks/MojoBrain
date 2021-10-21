@@ -14,7 +14,18 @@ sub register ($self, $app, $config) {
     return if ( !$value );
 
     return 'Invalid URL format' if ( $value !~ /^(?:(?:https?|s?))/ );
-    
+  });
+
+  # Change Password Form Validation
+  $app->helper ( 'change_password_form_validation' => sub ($c) {
+    return state $change_password_form_validation = {
+      password => sub ( $v ) {
+        $v->required( 'password' )->like( qr/^[a-zA-Z0-9]+$/ );
+        $v->required( 'new_password' )->like( qr/^[a-zA-Z0-9]+$/ );
+        $v->required( 'confirm_new_password' )->like( qr/^[a-zA-Z0-9]+$/ );
+        $v->required( 'confirm_new_password' )->equal_to( 'new_password' ) if $v->required( 'password' )->is_valid;
+      }
+    }
   });
 
   return;
