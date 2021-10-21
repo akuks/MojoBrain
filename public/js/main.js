@@ -62,19 +62,15 @@ $('#profile-form').submit( function (e) {
   request = getAjaxRequest(form);
   
   request.done( function ( response, textStatus, jqXHR ) {
-    if ( response.status != 200 ) {
-      $('#response-message').html('Unable to update profile.');
-    }
-    else {
-      let html = getHtmlReponse(response.message);
-      
-      $('#response-message').html(html);
-    }
+    let html = ( response.status != 200 ) ? getHtmlReponse(response.message, 1) : getHtmlReponse(response.message);
+    $('#response-message').html(html);
   });
 
   request.fail( function ( jqXHR, textStatus, errorThrown ) {
      /** Log error to console*/
     console.error(  "The following error occurred: " + textStatus, errorThrown );
+    let html = getHtmlReponse(textStatus, 1);
+    $('#response-message').html(html);
   });
 
   /** Enable inputs again */
