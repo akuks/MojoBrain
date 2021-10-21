@@ -74,4 +74,16 @@ sub profile_post ($c) {
   return $c->render ( json =>  $output  );
 }
 
+sub change_password_post ($c) {
+  my $v = $c->validation;
+
+  $c->change_password_form_validation->{password}->($v);
+
+  print Data::Dumper::Dumper($v);
+
+  my $output;
+
+  return $c->render ( json =>  $output  );
+}
+
 1;
