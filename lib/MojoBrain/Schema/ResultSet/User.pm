@@ -34,6 +34,18 @@ sub update_user ( $self, $user_id, $options ) {
   return $@ ? 0 : $user;
 }
 
+# Get user by id
+sub get_user_by_id ( $self, $user_id ) {
+  my $user = $self->search( { user_id => $user_id } );
 
+  return $user;
+}
+
+# Get user by email
+sub get_user_by_email ( $self, $email ) {
+  my $user = $self->find({ email => $email });
+
+  return $user;
+}
 
 1;

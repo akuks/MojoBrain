@@ -77,11 +77,37 @@ sub profile_post ($c) {
 sub change_password_post ($c) {
   my $v = $c->validation;
 
+  # Form Validation
   $c->change_password_form_validation->{password}->($v);
 
-  print Data::Dumper::Dumper($v);
+  return $c->render ( json => { error => 'Invalid password request.' } ) if ( $v->has_error );
+
+  my $user = $c->app->db->resultset('User')->get_user_by_id( $c->session( 'user_id' ) ); 
+
+  # If Invalid user_id
+  return $c->render( json => { error => 'Generic API error.' } ) if ( !$user->count ); 
+
+  my $is_pass_valid = $c->bcrypt_validate( $c->param('password') || '', $user->first->password ) ;
+
+  # Invalid current password
+  return $c->render ( json => { error => 'Invalid current password.' } ) if ( !$is_pass_valid );
+
+  eval {
+    $user->update({ 
+      password => trim $c->app->bcrypt( $c->param('new_password') ) ,
+      updated_at =>  DateTime::Format::MySQL->format_datetime( DateTime->now )
+    });
+  } ;
 
   my $output;
+
+  if ($@) {
+    $output->{ error } = 'Failed to update password';
+  }
+  else {
+    $output->{message} = 'Password updated succesfully.';
+    $output->{status}  = 200;
+  }
 
   return $c->render ( json =>  $output  );
 }
