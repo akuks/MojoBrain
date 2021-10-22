@@ -8,7 +8,8 @@ use DateTime::Format::MySQL;
 
 # This action will render a template
 sub profile ($c) {
-  $c->render( template => 'auth/profile' )
+  $c->stash( 'module' => 'Profile' );
+  $c->render( template => 'auth/profile', title => 'User Profile' )
 }
 
 sub profile_post ($c) {
