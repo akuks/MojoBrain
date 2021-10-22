@@ -31,13 +31,13 @@ sub signin_post ($c) {
         {email => $username}
       );
       
-      $c->session(user_exists => $c->is_user_exists($username, $password));
-      $c->session(user_id => $user_details->first->id);
+      $c->session( user_exists => $c->is_user_exists($username, $password) );
+      $c->session( user_id => $user_details->first->id );
 
       return $c->session('user_exists');
     }
   });
-  my $auth_key = $c->authenticate($username, $password );
+  my $auth_key = $c->authenticate( $username, $password );
 
   if ( $auth_key ) {
     my $redirect = _get_redirect_url($c->req->headers->referrer);
