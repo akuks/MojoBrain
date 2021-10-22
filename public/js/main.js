@@ -80,6 +80,47 @@ $('#profile-form').submit( function (e) {
 
 });
 
+// Submit change password
+$('#change-password-form').submit( function (e) {
+  
+  let isFormValid = $('#change-password-form').valid();
+  
+  // Return If Form is invalid
+  if (! isFormValid) {
+    return
+  }
+  
+  e.preventDefault();
+
+  let request;
+
+  if ( request ) {
+    request.abort();          // Abort previous or pending requests
+  }
+
+  let form = getFormSerialize('#change-password-form');
+
+  request = getAjaxRequest(form);
+  
+  request.done( function ( response, textStatus, jqXHR ) {
+    let html = ( response.status != 200 ) ? getHtmlReponse(response.message, 1) : getHtmlReponse(response.message);
+    $('#response-message').html(html);
+  });
+
+  request.fail( function ( jqXHR, textStatus, errorThrown ) {
+     /** Log error to console*/
+    console.error(  "The following error occurred: " + textStatus, errorThrown );
+    let html = getHtmlReponse(textStatus, 1);
+    $('#response-message').html(html);
+  });
+
+  /** Enable inputs again */
+  request.always(function () {
+    form['inputs'].prop("disabled", false);
+  });
+
+});
+
 /** 
 * Global function to serialize the form values
 */
