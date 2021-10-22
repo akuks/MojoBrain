@@ -1,4 +1,6 @@
-
+% my $active = 'text-white bg-cyan-500 rounded';
+% my $inactive = 'text-gray-500 hover:bg-indigo-50 rounded';
+% my $module = $c->stash( 'module' );
 <!-- Left Navigation Menu -->
 <div class="hidden lg:block navbar-menu relative z-50">
   <div class="navbar-backdrop fixed lg:hidden inset-0 bg-gray-800 opacity-10"></div>
@@ -14,7 +16,7 @@
       <h3 class="mb-2 text-xs uppercase text-gray-200 font-medium">Main</h3>
       <ul class="mb-8 text-sm font-medium">
         <li>
-          <a class="flex items-center pl-3 py-3 pr-4 text-white bg-cyan-500 rounded" href="/admin/dashboard">
+          <a class="flex items-center pl-3 py-3 pr-4 <%= ( $module eq 'Dashboard' ) ? $active : $inactive %>" href="/admin/dashboard">
             <span class="inline-block mr-3">
               <svg class="text-gray-200 w-5 h-5" viewbox="0 0 18 18" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -25,7 +27,7 @@
             </span>
             <span>Dashboard</span>
             <span class="inline-block ml-auto">
-              <svg class="text-white w-3 h-3" viewbox="0 0 10 6" fill="none"
+              <svg class="<%= ( $module eq 'Dashboard' ) ? 'text-white' : 'text-gray-400' %> w-3 h-3" viewbox="0 0 10 6" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M9.08329 0.666626C8.74996 0.333293 8.24996 0.333293 7.91663 0.666626L4.99996 3.58329L2.08329 0.666626C1.74996 0.333293 1.24996 0.333293 0.916626 0.666626C0.583293 0.999959 0.583293 1.49996 0.916626 1.83329L4.41663 5.33329C4.58329 5.49996 4.74996 5.58329 4.99996 5.58329C5.24996 5.58329 5.41663 5.49996 5.58329 5.33329L9.08329 1.83329C9.41663 1.49996 9.41663 0.999959 9.08329 0.666626Z"
@@ -50,7 +52,7 @@
           </a>
         </li>
         <li>
-          <a class="flex items-center pl-3 py-3 pr-4 text-gray-500 hover:bg-indigo-50 rounded" href="#">
+          <a class="flex items-center pl-3 py-3 pr-4 <%= $inactive %>" href="#">
             <span class="inline-block mr-3">
               <svg class="text-gray-200 w-5 h-5" viewbox="0 0 18 18" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -192,7 +194,7 @@
       
       <div class="pt-8">
           <h3 class="mb-2 text-xs uppercase text-gray-500 font-medium">Settings</h3>
-        <a class="flex items-center pl-3 py-3 pr-2 text-gray-500 hover:bg-indigo-50 rounded" href="/profile">
+        <a class="flex items-center pl-3 py-3 pr-2 <%= ( $module eq 'Profile' ) ? $active : $inactive %>" href="/profile">
           <span class="inline-block mr-4">
             <svg class="text-gray-200 w-5 h-5" viewbox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
