@@ -48,4 +48,12 @@ sub get_user_by_email ( $self, $email ) {
   return $user;
 }
 
+# Get All user Profile settings
+sub get_user_details($self, $user_id) {
+  
+  return $user_id ? $self->search({
+    user_id => $user_id
+  })->first : '';
+}
+
 1;
