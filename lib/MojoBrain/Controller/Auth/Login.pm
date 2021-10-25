@@ -20,7 +20,7 @@ sub login ($c) {
 
 sub is_user_authenticated($c) {
   if ( $c->session('user_exists') ) {
-    my $user = $c->app->get_user_details(  $c->session('user_id') );
+    my $user = $c->app->db->resultset('User')->get_user_details(  $c->session('user_id') );
   
     $c->stash( user => $user );
     return 1;
