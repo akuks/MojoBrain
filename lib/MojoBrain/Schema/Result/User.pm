@@ -157,6 +157,7 @@ __PACKAGE__->table("users");
 
   data_type: 'datetime'
   datetime_undef_if_invalid: 1
+  default_value: 'CURRENT_TIMESTAMP'
   is_nullable: 0
 
 =head2 created_by
@@ -238,6 +239,7 @@ __PACKAGE__->add_columns(
   {
     data_type => "datetime",
     datetime_undef_if_invalid => 1,
+    default_value => "CURRENT_TIMESTAMP",
     is_nullable => 0,
   },
   "created_by",
@@ -290,9 +292,26 @@ __PACKAGE__->add_unique_constraint("users_email_unique", ["email"]);
 
 __PACKAGE__->add_unique_constraint("users_slug_unique", ["slug"]);
 
+=head1 RELATIONS
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-07-13 22:05:25
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:sjY5lIszmRR+eX+mGWtD/A
+=head2 company_settings
+
+Type: has_many
+
+Related object: L<MojoBrain::Schema::Result::CompanySetting>
+
+=cut
+
+__PACKAGE__->has_many(
+  "company_settings",
+  "MojoBrain::Schema::Result::CompanySetting",
+  { "foreign.user_id" => "self.user_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-10-25 13:15:52
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:AWRPGDQ+TJR9D8kcQRmR7w
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
