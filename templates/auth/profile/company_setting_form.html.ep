@@ -1,0 +1,24 @@
+% my $label = 'block text-gray-700 text-sm font-bold mb-2';
+% my $input_class = 'shadow appearance-none border rounded w-full py-2 px-2 text-gray-700 leading-tight px-4 py-4 focus:outline-none focus:shadow-outline';
+% my $button_class = 'bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded focus:outline-none px-4 py-3 focus:shadow-outline transition duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-110 undefined';
+
+%= form_for '/profile/company_setting', id => 'company-signup-form', method => 'POST', class => 'bg-white shadow-2xl rounded px-8 pt-6 pb-8 mb-4 mt-4' => begin 
+  %= csrf_field
+  <div id="signup-box" class="text-center mb-4">
+    <div id="company-setting-box" class="font-bold text-2xl text-cyan-500"> 
+      Update Company Information
+    </div>
+  </div>
+
+  <div class="w-full mb-2 mt-2 flex">
+    <div class="w-1/2">
+        %= label_for name => 'Full Name', class => $label
+        %= text_field 'name', id => 'name', class => $input_class, placeholder => 'Enter Full Name', value => $user->name    
+    </div>
+    <div class="w-1/2 ml-5">
+        %= label_for name => 'Full Name', class => $label
+        %= text_field 'name', id => 'name', class => $input_class, placeholder => 'Enter Full Name', value => $user->name
+    </div>
+    
+  </div>
+%= end
