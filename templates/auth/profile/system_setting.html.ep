@@ -1,0 +1,23 @@
+% extends 'layouts/admin/layout';
+% my $label = 'block text-gray-700 text-sm font-bold mb-2';
+% my $input_class = 'shadow appearance-none border rounded w-full py-2 px-2 text-gray-700 leading-tight px-4 py-4 focus:outline-none focus:shadow-outline';
+% my $button_class = 'bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded focus:outline-none px-4 py-3 focus:shadow-outline transition duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-110 undefined';
+
+<main class="container mx-auto md:container md:mx-auto">
+  <div>
+    <div class="w-full mx-auto mt-10">
+      <button class="<%= $button_class %> ml-2" > Company Setting </button>
+      <button class="<%= $button_class %> ml-2" >     
+        Payment Setting
+      </button>
+      <button class="<%= $button_class %> ml-2" >     
+        Invoice Setting
+      </button>
+
+      %= include 'auth/profile/company_setting_form' ;
+      
+      
+    </div>  
+  </div>
+  
+</main>
