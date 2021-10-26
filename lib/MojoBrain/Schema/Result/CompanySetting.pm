@@ -111,6 +111,18 @@ __PACKAGE__->table("company_setting");
   is_nullable: 1
   size: 20
 
+=head2 telephone
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 20
+
+=head2 telephone_prefix
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 4
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -147,6 +159,10 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 1, size => 80 },
   "country",
   { data_type => "varchar", is_nullable => 1, size => 20 },
+  "telephone",
+  { data_type => "varchar", is_nullable => 1, size => 20 },
+  "telephone_prefix",
+  { data_type => "varchar", is_nullable => 1, size => 4 },
 );
 
 =head1 PRIMARY KEY
@@ -179,8 +195,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-10-25 14:16:01
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:JBc7NDduGZs5L3NYDc/cdg
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-10-25 15:59:37
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:5paChNP6DxpMxUExFPZ/5w
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
