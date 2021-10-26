@@ -12,4 +12,11 @@ sub system_setting ($c) {
   $c->render( template => 'auth/profile/system_setting', title => 'Users System Settings' )
 }
 
+sub system_setting_post ($c) {
+  my $output ;
+
+  $output->{message} = 'Company Settings updated succesfully.';
+  $c->render( json => $output );
+}
+
 1;
