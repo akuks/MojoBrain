@@ -17,7 +17,7 @@
     </div>
     <div class="w-1/2 ml-5">
         %= label_for name => 'Company Email', class => $label
-        %= email_field 'company_email', id => 'company_email', class => $input_class, placeholder => 'Enter Company\'s email', value => $user->{company}->{email}
+        %= email_field 'email', id => 'company_email', class => $input_class, placeholder => 'Enter Company\'s email', value => $user->{company}->{email}
     </div>
   </div>
 
@@ -51,18 +51,75 @@
     <div class="w-1/2 ml-5 flex">
       <div class="w-1/4">
         %= label_for name => 'Phone Prefix', class => $label
-        %= text_field 'telephone_prefix', id => 'telephone', class => $input_class, placeholder => 'Prefix (+91)', value => $user->{company}->{telephone}
+        %= number_field 'telephone_prefix', id => 'telephone', class => $input_class, placeholder => 'Prefix (+91)', value => $user->{company}->{telephone}
       </div>
+
       <div class="ml-5 w-3/4">
         %= label_for name => 'Phone', class => $label
-        %= text_field 'telephone', id => 'telephone', class => $input_class, placeholder => 'Phone Number', value => $user->{company}->{telephone}
+        %= number_field 'telephone', id => 'telephone', class => $input_class, placeholder => 'Phone Number', value => $user->{company}->{telephone}
       </div>
-        
+
     </div>
   </div>
 
   <div class="flex items-center justify-between mt-10">
-    <button class="<%= $button_class %>" type="submit">Update</button>
+    <button class="<%= $button_class %>" type="submit" onclick="generalFormSubmit('company-signup-form')">Update</button>
   </div>
 
+  <div id='company-signup-form-response-message'></div>
 %= end
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    // Profile Form Validation
+    $('#company-signup-form').validate({
+      errorClass: "error fail-alert",
+      rules: {
+        name:  {
+          required: true
+        },
+        email: {
+          required: true,
+          email: true,
+        },
+        telephone_prefix: {
+          maxlength: 3,
+          digits: true
+        },
+        telephone: {
+          minlength: 5,
+          maxlength: 10,
+          digits: true
+        }
+      }, // Rules
+      // Messages
+      message: {
+        name:  {
+          required: "Company name cannot be left blank"
+        },
+        company_email: {
+          required: "Email cannot be left blank.",
+          email: "Please enter a valid email address"
+        },
+        telephone_prefix: {
+          maxlength: "Length should not be greater than 3"
+        }
+      }
+    });
+
+  });
+
+  // function showAndHide( showId, hideId ) {
+  //   $('#' + showId).show();
+  //   $('#' + hideId).hide();
+  // }
+
+</script>
+
+<style>
+label.error.fail-alert {
+  font-size: 0.8em;
+  color: red;
+  font-style: italic
+}
+</style>
