@@ -1,6 +1,5 @@
 package MojoBrain::Plugin::Validation;
 use Mojo::Base 'Mojolicious::Plugin', -signatures;
-#use Mojolicious::Validator;
 
 sub register ($self, $app, $config) {
 
@@ -36,6 +35,28 @@ sub register ($self, $app, $config) {
       },
       email => sub ( $v, $email ) {
         $v->required('email')->like( Email::Valid->address( $email ) )
+      },
+      address => sub ( $v ) {
+        $v->optional('address')->like( qr/^[a-zA-Z0-9]+$/ );
+      },
+      city => sub ( $v ) {
+        $v->optional('city')->like( qr/^[a-zA-Z]+$/ );
+      },
+      state => sub ( $v ) {
+        $v->optional('state')->like( qr/^[a-zA-Z]+$/ );
+      },
+      zip => sub ( $v ) {
+        $v->optional('zip')->like( qr/^[0-9]+$/ );
+      },
+      country => sub ( $v ) {
+        $v->optional('country')->like( qr/^[a-zA-Z]+$/ );
+      },
+      telephone_prefix => sub ( $v ) {
+        # Must be 2 or 3 digits
+        $v->optional('telephone_prefix')->like( qr/^[\+]?[0-9]?[0-9]?[0-9]$/ );
+      },
+      telephone => sub ( $v ) {
+        $v->optional('telephone')->like( qr/^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/ );
       }
     }
   });
