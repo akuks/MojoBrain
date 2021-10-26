@@ -122,6 +122,53 @@ $('#change-password-form').submit( function (e) {
 });
 
 /** 
+* Submit Form Function
+*/
+function generalFormSubmit ( formId ) {
+  
+  $('#' + formId).submit( function (e) {
+    let isFormValid = $('#' + formId).valid();
+  
+    // Return If Form is invalid
+    if (! isFormValid) {
+      return
+    }
+    
+    e.preventDefault();
+
+    let request;
+
+    if ( request ) {
+      request.abort();          // Abort previous or pending requests
+    }
+
+    let form = getFormSerialize('#' + formId);
+
+    request = getAjaxRequest(form);
+    
+    request.done( function ( response, textStatus, jqXHR ) {
+      console.log(response.status);
+      let html = ( response.status != 200 ) ? getHtmlReponse(response.message, 1) : getHtmlReponse(response.message);
+      $('#' + formId + '-response-message').html(html);
+    });
+
+    request.fail( function ( jqXHR, textStatus, errorThrown ) {
+      /** Log error to console*/
+      console.error(  "The following error occurred: " + textStatus, errorThrown );
+      let html = getHtmlReponse(textStatus, 1);
+      $('#' + formId + '-response-message').html(html);
+    });
+
+    /** Enable inputs again */
+    request.always(function () {
+      form['inputs'].prop("disabled", false);
+    });
+
+  });
+}
+
+
+/** 
 * Global function to serialize the form values
 */
 function getFormSerialize(id) {
@@ -178,4 +225,5 @@ function getHtmlReponse ( message, alert ) {
 // Delete response message when remove-alert class is clicked
 $( document ).on( 'click', ".remove-alert", function() {
   $('#response-message').html('');
+  $('#company-signup-form-response-message').html('');
 }); 
