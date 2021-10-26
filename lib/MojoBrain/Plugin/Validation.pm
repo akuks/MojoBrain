@@ -28,6 +28,18 @@ sub register ($self, $app, $config) {
     }
   });
 
+  # General Form Validation
+  $app->helper( 'form_validation' => sub ( $c ) {
+    return state $form_validation = {
+      name => sub ( $v ) {
+        $v->required('name')->like( qr/^[a-zA-Z0-9]+$/ );
+      },
+      email => sub ( $v, $email ) {
+        $v->required('email')->like( Email::Valid->address( $email ) )
+      }
+    }
+  });
+
   return;
 }
 
