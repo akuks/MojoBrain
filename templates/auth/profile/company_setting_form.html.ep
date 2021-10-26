@@ -12,13 +12,57 @@
 
   <div class="w-full mb-2 mt-2 flex">
     <div class="w-1/2">
-        %= label_for name => 'Full Name', class => $label
-        %= text_field 'name', id => 'name', class => $input_class, placeholder => 'Enter Full Name', value => $user->name    
+        %= label_for name => 'Company Name', class => $label
+        %= text_field 'name', id => 'company_name', class => $input_class, placeholder => 'Enter Full Name', value => $user->{company}->{name}    
     </div>
     <div class="w-1/2 ml-5">
-        %= label_for name => 'Full Name', class => $label
-        %= text_field 'name', id => 'name', class => $input_class, placeholder => 'Enter Full Name', value => $user->name
+        %= label_for name => 'Company Email', class => $label
+        %= email_field 'company_email', id => 'company_email', class => $input_class, placeholder => 'Enter Company\'s email', value => $user->{company}->{email}
     </div>
-    
   </div>
+
+  <div class="w-full mb-2 mt-2 flex">
+    <div class="w-1/2">
+        %= label_for name => 'Company Address', class => $label
+        %= text_field 'address', id => 'address', class => $input_class, placeholder => 'Company\'s Address', value => $user->{company}->{address}    
+    </div>
+    <div class="w-1/2 ml-5">
+        %= label_for name => 'City', class => $label
+        %= text_field 'city', id => 'company_city', class => $input_class, placeholder => 'City', value => $user->{company}->{city}
+    </div>
+  </div>
+
+  <div class="w-full mb-2 mt-2 flex">
+    <div class="w-1/2">
+        %= label_for name => 'State', class => $label
+        %= text_field 'state', id => 'address', class => $input_class, placeholder => 'State', value => $user->{company}->{state}    
+    </div>
+    <div class="w-1/2 ml-5">
+        %= label_for name => 'Zip', class => $label
+        %= text_field 'zip', id => 'zip', class => $input_class, placeholder => 'Zip Code', value => $user->{company}->{zip}
+    </div>
+  </div>
+
+  <div class="w-full mb-2 mt-2 flex">
+    <div class="w-1/2">
+        %= label_for name => 'Country', class => $label
+        %= text_field 'country', id => 'country', class => $input_class, placeholder => 'State', value => $user->{company}->{country}
+    </div>
+    <div class="w-1/2 ml-5 flex">
+      <div class="w-1/4">
+        %= label_for name => 'Phone Prefix', class => $label
+        %= text_field 'telephone_prefix', id => 'telephone', class => $input_class, placeholder => 'Prefix (+91)', value => $user->{company}->{telephone}
+      </div>
+      <div class="ml-5 w-3/4">
+        %= label_for name => 'Phone', class => $label
+        %= text_field 'telephone', id => 'telephone', class => $input_class, placeholder => 'Phone Number', value => $user->{company}->{telephone}
+      </div>
+        
+    </div>
+  </div>
+
+  <div class="flex items-center justify-between mt-10">
+    <button class="<%= $button_class %>" type="submit">Update</button>
+  </div>
+
 %= end
