@@ -10,6 +10,7 @@ sub register ($self, $app, $config) {
   $auth->post('/change_password')->to('Auth::Profile#change_password_post');
 
   $auth->get('/system_setting')->to('Auth::Profile::SystemSetting#system_setting');
+  $auth->post('/company_setting')->to('Auth::Profile::SystemSetting#system_setting_post');
 
   return;
 }
