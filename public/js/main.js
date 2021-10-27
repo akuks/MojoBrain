@@ -62,14 +62,14 @@ $('#profile-form').submit( function (e) {
   request = getAjaxRequest(form);
   
   request.done( function ( response, textStatus, jqXHR ) {
-    let html = ( response.status != 200 ) ? getHtmlReponse(response.message, 1) : getHtmlReponse(response.message);
+    let html = ( response.status != 200 ) ? getHtmlResponse(response.message, 1) : getHtmlResponse(response.message);
     $('#response-message').html(html);
   });
 
   request.fail( function ( jqXHR, textStatus, errorThrown ) {
      /** Log error to console*/
     console.error(  "The following error occurred: " + textStatus, errorThrown );
-    let html = getHtmlReponse(textStatus, 1);
+    let html = getHtmlResponse(textStatus, 1);
     $('#response-message').html(html);
   });
 
@@ -103,14 +103,14 @@ $('#change-password-form').submit( function (e) {
   request = getAjaxRequest(form);
   
   request.done( function ( response, textStatus, jqXHR ) {
-    let html = ( response.status != 200 ) ? getHtmlReponse(response.message, 1) : getHtmlReponse(response.message);
+    let html = ( response.status != 200 ) ? getHtmlResponse(response.message, 1) : getHtmlResponse(response.message);
     $('#response-message').html(html);
   });
 
   request.fail( function ( jqXHR, textStatus, errorThrown ) {
      /** Log error to console*/
     console.error(  "The following error occurred: " + textStatus, errorThrown );
-    let html = getHtmlReponse(textStatus, 1);
+    let html = getHtmlResponse(textStatus, 1);
     $('#response-message').html(html);
   });
 
@@ -144,19 +144,17 @@ function generalFormSubmit ( formId ) {
 
     let form = getFormSerialize('#' + formId);
 
-    console.log(form);
-
     request = getAjaxRequest(form);
     
     request.done( function ( response, textStatus, jqXHR ) {
-      let html = ( response.status != 200 ) ? getHtmlReponse(response.message, 1) : getHtmlReponse(response.error);
+      let html = ( response.status != 200 ) ? getHtmlResponse(response.error, 1) : getHtmlResponse(response.message);
       $('#' + formId + '-response-message').html(html);
     });
 
     request.fail( function ( jqXHR, textStatus, errorThrown ) {
       /** Log error to console*/
       console.error(  "The following error occurred: " + textStatus, errorThrown );
-      let html = getHtmlReponse(textStatus, 1);
+      let html = getHtmlResponse(textStatus, 1);
       $('#' + formId + '-response-message').html(html);
     });
 
@@ -202,7 +200,7 @@ function getAjaxRequest (form) {
 }
 
 // Return Alert HTML
-function getHtmlReponse ( message, alert ) {
+function getHtmlResponse ( message, alert ) {
   let alertClass = 'text-green-800';
   let alertBorderClass = 'border-green-500';
   if ( alert === 1 ) {
