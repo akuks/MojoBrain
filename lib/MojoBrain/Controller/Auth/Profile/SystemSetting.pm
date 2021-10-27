@@ -10,7 +10,7 @@ use DateTime::Format::MySQL;
 sub system_setting ($c) {
   my $details = $c->app->db->resultset('CompanySetting')->get_company_details( $c->session('user_id') );
   
-  $c->stash( 'module' => 'System-Setting' );
+  $c->stash( 'module' => 'System-Settings' );
   $c->stash( 'details' => $details) ;
   
   $c->render( template => 'auth/profile/system_setting', title => 'Users System Settings' )
