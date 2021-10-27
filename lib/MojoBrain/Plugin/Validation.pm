@@ -56,7 +56,7 @@ sub register ($self, $app, $config) {
         $v->optional('telephone_prefix')->like( qr/^$|^[\+]?[0-9]?[0-9]?[0-9]$/ );
       },
       telephone => sub ( $v ) {
-        $v->optional('telephone')->like( qr/^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/ );
+        $v->optional('telephone')->like( qr/^$\|^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/ );
       }
     }
   });
