@@ -126,7 +126,7 @@ $('#change-password-form').submit( function (e) {
 */
 function generalFormSubmit ( formId ) {
   
-  $('#' + formId).submit( function (e) {
+  $('#' + formId).one('submit', function (e) {
     let isFormValid = $('#' + formId).valid();
   
     // Return If Form is invalid
@@ -144,11 +144,12 @@ function generalFormSubmit ( formId ) {
 
     let form = getFormSerialize('#' + formId);
 
+    console.log(form);
+
     request = getAjaxRequest(form);
     
     request.done( function ( response, textStatus, jqXHR ) {
-      console.log(response.status);
-      let html = ( response.status != 200 ) ? getHtmlReponse(response.message, 1) : getHtmlReponse(response.message);
+      let html = ( response.status != 200 ) ? getHtmlReponse(response.message, 1) : getHtmlReponse(response.error);
       $('#' + formId + '-response-message').html(html);
     });
 
