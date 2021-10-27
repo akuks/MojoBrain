@@ -177,6 +177,20 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("company_id");
 
+=head1 UNIQUE CONSTRAINTS
+
+=head2 C<user_id>
+
+=over 4
+
+=item * L</user_id>
+
+=back
+
+=cut
+
+__PACKAGE__->add_unique_constraint("user_id", ["user_id"]);
+
 =head1 RELATIONS
 
 =head2 user
@@ -195,8 +209,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-10-25 15:59:37
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:5paChNP6DxpMxUExFPZ/5w
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-10-27 21:13:10
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:fjQZmSqrX/KZqnvFgvHsTA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
