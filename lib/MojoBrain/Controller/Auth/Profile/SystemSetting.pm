@@ -25,13 +25,16 @@ sub system_setting_post ($c) {
     else {
       $c->form_validation->{ $_ }->( $v );
     }
+    my $elem;
+    $elem = ( $_ eq 'email') ? 'company_email' : $_;
+    $options { $elem } = $c->param( $_ );
   }
 
-  print Data::Dumper::Dumper ( $v );
+  $options { user_id } = $c->session( 'user_id' );
 
   return $c->render ( json => { error => 'Invalid form parameters are passed.' } ) if ( $v->has_error );
 
-  #my $user_company = $c->app->db->resultset('CompanySetting')->create_update_company( \%options );
+  my $user_company = $c->app->db->resultset('CompanySetting')->create_update_company( \%options );
 
   my $output;
 
