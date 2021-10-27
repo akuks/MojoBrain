@@ -31,19 +31,19 @@ sub register ($self, $app, $config) {
   $app->helper( 'form_validation' => sub ( $c ) {
     return state $form_validation = {
       name => sub ( $v ) {
-        $v->required('name')->like( qr/^[a-zA-Z0-9]+$/ );
+        $v->required('name')->like( qr/^[a-zA-Z0-9 ]+$/ );
       },
       email => sub ( $v, $email ) {
         $v->required('email')->like( Email::Valid->address( $email ) )
       },
       address => sub ( $v ) {
-        $v->optional('address')->like( qr/^[a-zA-Z0-9]+$/ );
+        $v->optional('address')->like( qr/^[a-zA-Z0-9\/]+$/ );
       },
       city => sub ( $v ) {
         $v->optional('city')->like( qr/^[a-zA-Z]+$/ );
       },
       state => sub ( $v ) {
-        $v->optional('state')->like( qr/^[a-zA-Z]+$/ );
+        $v->optional('state')->like( qr/^[a-zA-Z ]+$/ );
       },
       zip => sub ( $v ) {
         $v->optional('zip')->like( qr/^[0-9]+$/ );
@@ -53,7 +53,7 @@ sub register ($self, $app, $config) {
       },
       telephone_prefix => sub ( $v ) {
         # Must be 2 or 3 digits
-        $v->optional('telephone_prefix')->like( qr/^[\+]?[0-9]?[0-9]?[0-9]$/ );
+        $v->optional('telephone_prefix')->like( qr/^$|^[\+]?[0-9]?[0-9]?[0-9]$/ );
       },
       telephone => sub ( $v ) {
         $v->optional('telephone')->like( qr/^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/ );
