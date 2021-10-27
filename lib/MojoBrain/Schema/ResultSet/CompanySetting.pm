@@ -11,7 +11,7 @@ sub create_update_company ( $self, $options ) {
   eval {
     $company = $self->update_or_create(
       { %$options },
-      { key => { 'user_id' } }
+      { key => 'user_id' }
     );
   };
 
