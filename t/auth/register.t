@@ -13,7 +13,7 @@ my %creds = (
 
 subtest 'Test User Registration' => sub { 
 
-  # If Login Form exists
+  # If Register Form exists
   $t->get_ok('/signup')
     ->status_is(200)
     ->element_exists('form input[name="name"]')
