@@ -64,6 +64,7 @@ sub startup ($self) {
   $self->plugin( 'MojoBrain::Plugin::Routes::AdministratorDashboard' ); 
   $self->plugin( 'MojoBrain::Plugin::Routes::Auth' );
   $self->plugin( 'MojoBrain::Plugin::Routes::Profile' );
+  $self->plugin( 'MojoBrain::Plugin::Routes::Client' );
 
 }
 
