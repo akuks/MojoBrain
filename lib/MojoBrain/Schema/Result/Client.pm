@@ -88,6 +88,12 @@ __PACKAGE__->table("client");
   datetime_undef_if_invalid: 1
   is_nullable: 1
 
+=head2 company_name
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 200
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -116,6 +122,8 @@ __PACKAGE__->add_columns(
     datetime_undef_if_invalid => 1,
     is_nullable => 1,
   },
+  "company_name",
+  { data_type => "varchar", is_nullable => 1, size => 200 },
 );
 
 =head1 PRIMARY KEY
@@ -164,8 +172,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-10-29 23:33:48
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:dVePL1mwNgx4A7xFTwgvhw
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-10-30 05:22:33
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:qxVlV8KAwOCiSV7YJfn0Ww
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
