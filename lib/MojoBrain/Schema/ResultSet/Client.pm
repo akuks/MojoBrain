@@ -18,4 +18,21 @@ sub create_update_client ( $self, $options ) {
   return $@ ? 0 : $client;
 }
 
+sub get_client_details ( $self, $user ) {
+  my @clients = $self->search(
+    { user_id => $user }
+  );
+
+  my @details = map { { 
+    company => {
+      name      => $_->name,
+      email     => $_->email,
+      status    => $_->status,
+      telephone => $_->telephone
+    }
+  } } @clients;
+
+  return \@details
+}
+
 1;
