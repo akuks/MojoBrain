@@ -294,6 +294,21 @@ __PACKAGE__->add_unique_constraint("users_slug_unique", ["slug"]);
 
 =head1 RELATIONS
 
+=head2 clients
+
+Type: has_many
+
+Related object: L<MojoBrain::Schema::Result::Client>
+
+=cut
+
+__PACKAGE__->has_many(
+  "clients",
+  "MojoBrain::Schema::Result::Client",
+  { "foreign.user_id" => "self.user_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 =head2 company_setting
 
 Type: might_have
@@ -310,8 +325,8 @@ __PACKAGE__->might_have(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-10-27 21:13:10
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:AiURAYfcN7G+HhaMWwLX1Q
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-10-29 23:22:35
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:iJXIT0PUFxE7+8YNIa8v7w
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
