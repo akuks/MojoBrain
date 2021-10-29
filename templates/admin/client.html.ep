@@ -4,11 +4,11 @@
 
 <section class="py-8">
   <div class="container px-4 mx-auto">
-      <button class="<%= $button_class %> mb-2" >     
-        Add Client
-      </button>
+    <a href="#create-clients-form" rel="modal:open" class="<%= $button_class %>" >     
+      Add Client
+    </a>
 
-    <div class="pt-4 bg-white shadow rounded">
+    <div class="pt-4 bg-white shadow rounded mt-4">
       <div class="flex px-6 pb-4 border-b">
         <h3 class="text-xl font-bold">List of Clients</h3>
       </div>
@@ -61,3 +61,13 @@
     </div>
   </div>
 </section>
+
+<div id="open-client-form">
+  %= include 'layouts/forms/add_client' ;
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+
+

@@ -1,0 +1,39 @@
+% my $label = 'block text-gray-700 text-sm font-bold mb-2';
+% my $input_class = 'shadow appearance-none border rounded w-full py-2 px-2 text-gray-700 leading-tight px-4 py-4 focus:outline-none focus:shadow-outline';
+% my $button_class = 'bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded focus:outline-none px-4 py-3 focus:shadow-outline transition duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-110 undefined';
+
+%= form_for '/clients', id => 'create-clients-form', method => 'POST', class => 'bg-white shadow-2xl rounded px-8 pt-6 pb-8 mb-4 mt-4 modal' => begin 
+  %= csrf_field
+  <div id="company-signup-box" class="text-center mb-4">
+    <div id="company-setting-box" class="font-bold text-xl text-gray-600"> 
+      Add New Client
+    </div>
+  </div>
+  <hr/>
+
+  <div class="w-full mb-2 mt-2">
+    %= label_for name => 'Company Name', class => $label
+    %= text_field 'name', id => 'company_name', class => $input_class, placeholder => 'Enter Company Name (Optional)'
+  </div>
+
+  <div class="w-full mb-2 mt-2">
+    %= label_for name => 'Person Name', class => $label
+    %= text_field 'name', id => 'person_name', class => $input_class, placeholder => 'Enter Persons Name'
+  </div>
+
+  <div class="w-full mb-2 mt-2">
+    %= label_for name => 'Email', class => $label
+    %= email_field 'email', id => 'email', class => $input_class, placeholder => 'Email'
+  </div>
+
+  <div class="w-full mb-2 mt-2">
+    %= label_for name => 'Phone', class => $label
+    %= number_field 'telephone', id => 'telephone', class => $input_class, placeholder => 'Phone Number'
+  </div>
+
+  <div class="flex items-center justify-between mt-10">
+    <button class="<%= $button_class %>" type="submit" onclick="generalFormSubmit('create-clients-form')">Create</button>
+  </div>
+
+  <div id='create-clients-form-response-message'></div>
+%= end
