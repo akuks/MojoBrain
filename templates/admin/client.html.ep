@@ -12,8 +12,17 @@
       <div class="flex px-6 pb-4 border-b">
         <h3 class="text-xl font-bold">List of Clients</h3>
       </div>
-      <div class="p-4">
-        <table class="table-auto w-full">
+      <div class="p-4" id="client-list">
+        <button class="mr-2 text-gray-200 hover:text-gray-300">
+          <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.7 19.3L17 15.6C20.1 11.7 19.5 6 15.6 2.9C11.7 -0.2 5.99999 0.5 2.89999 4.3C-0.200006 8.2 0.499995 13.9 4.29999 17C7.59999 19.6 12.3 19.6 15.6 17L19.3 20.7C19.7 21.1 20.3 21.1 20.7 20.7C21.1 20.3 21.1 19.7 20.7 19.3ZM9.99999 17C6.09999 17 2.99999 13.9 2.99999 10C2.99999 6.1 6.09999 3 9.99999 3C13.9 3 17 6.1 17 10C17 13.9 13.9 17 9.99999 17Z" fill="currentColor"></path>
+          </svg>
+        </button>
+        <input class="search pl-2 py-3 text-sm text-gray-700" placeholder="Search" />
+        <button class="sort <%= $button_class %>" data-sort="name">
+          Sort by name
+        </button>
+        <table class="client-table table-auto w-full mt-2">
           <thead>
             <tr class="text-xs text-gray-500 text-left">
               <th class="pb-3 font-medium">Name</th>
@@ -22,22 +31,22 @@
               <th class="pb-3 font-medium">Action</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="list">
             % foreach my $client ( @$details ) {
               <tr class="text-xs bg-gray-50">
-                <td class="py-5 px-6 font-medium"><%= $client->{name} %></td>
-                <td class="font-medium"><%= $client->{email} %></td>
-                <td>
+                <td class="py-5 px-6 font-medium name"><%= $client->{name} %></td>
+                <td class="font-medium email"><%= $client->{email} %></td>
+                <td class="status">
                   <span class="inline-block py-1 px-2 text-white bg-green-500 rounded-full">
                     <%= ( $client->{status} == 1 ) ? 'Active' : 'Archived' %>
                   </span>
                 </td>
-                <td class="font-medium">
-                  <a class="" href="#">
-                    <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
+                <td class="font-medium action">
+                  <a title="Edit Client Details" class="" href="#">
+                    <i class="<%= $button_class %> fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
                   </a>
-                  <a class="ml-2" href="#">
-                    <i class="fa fa-archive fa-lg" aria-hidden="true"></i>
+                  <a title="Archive the client" class="ml-2" href="#">
+                    <i class="<%= $button_class %> fa fa-archive fa-lg" aria-hidden="true"></i>
                   </a>
                   
                 </td>
@@ -66,8 +75,9 @@
   %= include 'layouts/forms/add_client' ;
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+%= include 'import/jquery_modal_import';
+%= include 'import/table';
+
 
 <script>
   $(function() {
@@ -78,6 +88,15 @@
       return false;
     })
   });
+
+  // Options setup the table
+  let options = {
+    valueNames: [ 'name', 'email', 'status', 'action' ],
+    pagination: true
+  };
+
+  var userList = new List('client-list', options);
+
 </script>
 
 
