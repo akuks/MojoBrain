@@ -13,7 +13,7 @@
 
   <div class="w-full mb-2 mt-2">
     %= label_for name => 'Company Name', class => $label
-    %= text_field 'name', id => 'company_name', class => $input_class, placeholder => 'Enter Company Name (Optional)'
+    %= text_field 'company_name', id => 'company_name', class => $input_class, placeholder => 'Enter Company Name (Optional)'
   </div>
 
   <div class="w-full mb-2 mt-2">
