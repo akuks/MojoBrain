@@ -11,7 +11,7 @@ sub create_update_client ( $self, $options ) {
   eval {
     $client = $self->update_or_create(
       { %$options },
-      { key => 'client_id_user_id' }
+      { key => 'client_email' }
     );
   };
 
