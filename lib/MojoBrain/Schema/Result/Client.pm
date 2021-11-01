@@ -140,19 +140,17 @@ __PACKAGE__->set_primary_key("client_id");
 
 =head1 UNIQUE CONSTRAINTS
 
-=head2 C<client_id_user_id>
+=head2 C<client_email>
 
 =over 4
 
-=item * L</user_id>
-
-=item * L</client_id>
+=item * L</email>
 
 =back
 
 =cut
 
-__PACKAGE__->add_unique_constraint("client_id_user_id", ["user_id", "client_id"]);
+__PACKAGE__->add_unique_constraint("client_email", ["email"]);
 
 =head1 RELATIONS
 
@@ -172,8 +170,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-10-30 05:22:33
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:qxVlV8KAwOCiSV7YJfn0Ww
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-11-01 15:04:35
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:3X+KGWJ2cDO3i3fI++Zxmw
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
