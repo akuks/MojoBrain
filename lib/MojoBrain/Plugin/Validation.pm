@@ -27,7 +27,7 @@ sub register ($self, $app, $config) {
     }
   });
 
-  # General Form Validation
+  # General Form Parameters Validation
   $app->helper( 'form_validation' => sub ( $c ) {
     return state $form_validation = {
       name => sub ( $v ) {
@@ -57,6 +57,9 @@ sub register ($self, $app, $config) {
       },
       telephone => sub ( $v ) {
         $v->optional('telephone')->like( qr/^$\|^[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/ );
+      },
+      company_name => sub ( $v ) {
+        $v->optional('company_name')->like( qr/^$|^[a-zA-Z0-9 ]+$/ );
       }
     }
   });
