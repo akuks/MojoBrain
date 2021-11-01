@@ -23,13 +23,12 @@ sub get_client_details ( $self, $user ) {
     { user_id => $user }
   );
 
-  my @details = map { { 
-    company => {
-      name      => $_->name,
-      email     => $_->email,
-      status    => $_->status,
-      telephone => $_->telephone
-    }
+  my @details = map { {
+      name         => $_->name,
+      email        => $_->email,
+      status       => $_->status,
+      telephone    => $_->telephone,
+      company_name => $_->company_name
   } } @clients;
 
   return \@details
