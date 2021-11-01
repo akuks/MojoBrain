@@ -29,7 +29,7 @@
                 <td class="font-medium"><%= $client->{email} %></td>
                 <td>
                   <span class="inline-block py-1 px-2 text-white bg-green-500 rounded-full">
-                    <%= $client->{status} %>
+                    <%= ( $client->{status} == 1 ) ? 'Active' : 'Archived' %>
                   </span>
                 </td>
                 <td class="font-medium">
