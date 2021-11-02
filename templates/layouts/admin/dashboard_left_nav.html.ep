@@ -58,7 +58,7 @@
           </a>
         </li>
         <li>
-          <a class="flex items-center pl-3 py-3 pr-4 text-gray-500 hover:bg-indigo-50 rounded" href="#">
+          <a class="flex items-center pl-3 py-3 pr-4 text-gray-500 hover:bg-indigo-50 rounded <%= ( $module eq 'Projects' ) ? $active : $inactive %>" href="/projects">
             <span class="inline-block mr-3">
               <svg class="text-gray-200 w-5 h-5" viewbox="0 0 20 20" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
