@@ -32,26 +32,29 @@
             </tr>
           </thead>
           <tbody class="list">
+            % my $i = 1;
             % foreach my $client ( @$details ) {
-              <tr class="text-xs bg-gray-50">
-                <td class="py-5 px-6 font-medium name"><%= $client->{name} %></td>
-                <td class="font-medium email"><%= $client->{email} %></td>
-                <td class="status">
-                  <span class="inline-block py-1 px-2 text-white bg-green-500 rounded-full">
+              <tr id="row_<%= $i %>" class="text-xs bg-gray-50">
+                <td id="name_row_<%= $i %>" class="py-5 px-6 font-medium name"><%= $client->{name} %></td>
+                <td id="email_row_<%= $i %>" class="font-medium email"><%= $client->{email} %></td>
+                <td style="display: none" id="telephone_row_<%= $i %>" class="font-medium email"><%= $client->{telephone} %></td>
+                <td style="display: none" id="company_name_row_<%= $i %>" class="font-medium email"><%= $client->{company_name} %></td>
+                <td id="status_row_<%= $i %>" class="status">
+                  <span id='span_status_row_<%= $i %>' class="inline-block py-1 px-2 text-white bg-green-500 rounded-full">
                     <%= ( $client->{status} == 1 ) ? 'Active' : 'Archived' %>
                   </span>
                 </td>
                 <td class="font-medium action">
-                  <a title="Edit Client Details" class="" href="#">
+                  <a id="edit_row_<%= $i %>" title="Edit Client Details" data-modal='#create-clients-form' class="" href="#create-clients-form" >
                     <i class="<%= $button_class %> fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>
                   </a>
-                  <a title="Archive the client" class="ml-2" href="#">
+                  <a id="archive_row_<%= $i %>" title="Archive the client" class="ml-2" href="#">
                     <i class="<%= $button_class %> fa fa-archive fa-lg" aria-hidden="true"></i>
                   </a>
-                  
                 </td>
                 
               </tr>
+              % $i++;
             % }
             
 
@@ -82,6 +85,23 @@
 <script>
   $(function() {
     $('a[data-modal]').on('click', function(e) {
+      let anchorId ;
+      if ( $(this).attr('id') ) {
+        anchorId = $(this).attr('id');
+        let rowId = anchorId.split("_")[2];
+
+        let name          = $('#name_row_' + rowId).text();
+        let email         = $('#email_row_' + rowId).text();
+        let status        = $('#span_status_row_' + rowId).text();
+        let company_name  = $('#company_name_row_' + rowId).text();
+        let telephone     = $('#telephone_row_' + rowId).text();
+        
+        $('#company_name').val(company_name);
+        $('#email').val(email);
+        $('#person_name').val(name);
+        $('#telephone').val(telephone);
+      }
+      
       $(this).modal({
         fadeDuration: 100
       });
