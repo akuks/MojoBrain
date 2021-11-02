@@ -226,3 +226,4 @@ $( document ).on( 'click', ".remove-alert", function() {
   $('#response-message').html('');
   $('#company-signup-form-response-message').html('');
 }); 
+
