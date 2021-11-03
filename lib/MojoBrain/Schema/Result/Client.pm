@@ -154,6 +154,21 @@ __PACKAGE__->add_unique_constraint("client_email", ["email"]);
 
 =head1 RELATIONS
 
+=head2 projects
+
+Type: has_many
+
+Related object: L<MojoBrain::Schema::Result::Project>
+
+=cut
+
+__PACKAGE__->has_many(
+  "projects",
+  "MojoBrain::Schema::Result::Project",
+  { "foreign.client_id" => "self.client_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 =head2 user
 
 Type: belongs_to
@@ -170,8 +185,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-11-01 15:04:35
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:3X+KGWJ2cDO3i3fI++Zxmw
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-11-03 16:44:20
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:+HP7t9bx5mbHp0E9Mfutxg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
