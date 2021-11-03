@@ -103,9 +103,26 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
+=head1 RELATIONS
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-11-03 14:39:20
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:677oboBeT02Gw0sZIb5Prg
+=head2 projects
+
+Type: has_many
+
+Related object: L<MojoBrain::Schema::Result::Project>
+
+=cut
+
+__PACKAGE__->has_many(
+  "projects",
+  "MojoBrain::Schema::Result::Project",
+  { "foreign.currency_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-11-03 16:44:20
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:6r51nenwt4yWP4ST8yjjHA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
