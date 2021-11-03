@@ -2,10 +2,12 @@ package MojoBrain::Controller::Admin::Project;
 use Mojo::Base 'Mojolicious::Controller', -signatures;
 
 sub project ($c) {
-  # my $details = $c->app->db->resultset('Client')->get_client_details( $c->session('user_id') );
+  my $details  = $c->app->db->resultset('Client')->get_client_details( $c->session('user_id') );
+  my $currency = $c->app->db->resultset('Currency')->get_all_currency();
 
-  $c->stash( 'module' => 'Projects' );
-  # $c->stash( 'details' => $details );
+  $c->stash( 'module'   => 'Projects' );
+  $c->stash( 'details'  => $details );
+  $c->stash( 'currency' => $currency );
   
   $c->render( template => '/admin/project')
 }
@@ -16,7 +18,7 @@ sub project_post ($c) {
   my %options;
 
   # Form Validation Plugin
-  foreach(qw/company_name name email telephone/) {
+  foreach(qw/client_name project_name contract_type rate currency/) {
     if ( $_ eq 'email') {
       $c->form_validation->{ $_ }->( $v, $c->param('email') );
     }
