@@ -13,8 +13,34 @@
         <input class="pl-2 py-3 text-sm text-gray-200" type="text" placeholder="Type to search...">
       </div>
 
-      <button class="flex items-center <%= $button_class %>"> New Project </button>
+      <a href="#create-projects-form" data-modal="#create-projects-form" class="flex items-center <%= $button_class %>"> New Project </a>
 
     </div>
   </nav>
 </section>
+
+%= include 'import/jquery_modal_import';
+%= include 'import/table';
+
+%= include 'layouts/forms/add_project';
+
+<script>
+  $(function() {
+    $('a[data-modal]').on('click', function(e) {
+  
+      $(this).modal({
+        fadeDuration: 100
+      });
+      return false;
+    })
+  });
+
+  // Options setup the table
+  let options = {
+    valueNames: [ 'name', 'email', 'status', 'action' ],
+    pagination: true
+  };
+
+  var projectList = new List('project-list', options);
+
+</script>
