@@ -51,7 +51,7 @@ __PACKAGE__->table("currency");
   is_nullable: 1
   size: 100
 
-=head2 country_short_name
+=head2 short_name
 
   data_type: 'varchar'
   is_nullable: 1
@@ -81,7 +81,7 @@ __PACKAGE__->add_columns(
   { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
   "country",
   { data_type => "varchar", is_nullable => 1, size => 100 },
-  "country_short_name",
+  "short_name",
   { data_type => "varchar", is_nullable => 1, size => 100 },
   "code",
   { data_type => "varchar", is_nullable => 1, size => 50 },
@@ -104,8 +104,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-11-03 14:35:28
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ijdYmZcD26b/n8EqBPgeWg
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-11-03 14:39:20
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:677oboBeT02Gw0sZIb5Prg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
