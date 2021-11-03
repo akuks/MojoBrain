@@ -324,9 +324,24 @@ __PACKAGE__->might_have(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+=head2 projects
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-10-29 23:22:35
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:iJXIT0PUFxE7+8YNIa8v7w
+Type: has_many
+
+Related object: L<MojoBrain::Schema::Result::Project>
+
+=cut
+
+__PACKAGE__->has_many(
+  "projects",
+  "MojoBrain::Schema::Result::Project",
+  { "foreign.user_id" => "self.user_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-11-03 16:44:20
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:pyfGz+8slri8x8tHQy8FVg
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
