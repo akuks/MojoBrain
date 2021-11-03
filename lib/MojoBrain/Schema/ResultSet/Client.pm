@@ -28,7 +28,8 @@ sub get_client_details ( $self, $user ) {
       email        => $_->email,
       status       => $_->status,
       telephone    => $_->telephone,
-      company_name => $_->company_name
+      company_name => $_->company_name,
+      client_id    => $_->client_id
   } } @clients;
 
   return \@details
