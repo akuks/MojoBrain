@@ -62,6 +62,9 @@ sub register ($self, $app, $config) {
         $v->optional('company_name')->like( qr/^$|^[a-zA-Z0-9 ]+$/ );
       },
       client_name => sub ( $v ) {
+        $v->required('client_name')->like( qr/^[\d+]+$/ );
+      },
+      project_name => sub ( $v ) {
         $v->required('project_name')->like( qr/^[a-zA-Z0-9 ]+$/ );
       },
       contract_type => sub ( $v ) {
@@ -71,7 +74,7 @@ sub register ($self, $app, $config) {
         $v->required('rate')->like( qr/\d+/ );
       },
       currency => sub ( $v ) {
-         $v->required('currency')->like( qr/^[a-zA-Z]+$/ );
+         $v->required('currency')->like( qr/^[\d+]+$/ );
       }
     }
   });
