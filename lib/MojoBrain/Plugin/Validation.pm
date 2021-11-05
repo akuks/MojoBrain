@@ -60,6 +60,18 @@ sub register ($self, $app, $config) {
       },
       company_name => sub ( $v ) {
         $v->optional('company_name')->like( qr/^$|^[a-zA-Z0-9 ]+$/ );
+      },
+      client_name => sub ( $v ) {
+        $v->required('project_name')->like( qr/^[a-zA-Z0-9 ]+$/ );
+      },
+      contract_type => sub ( $v ) {
+        $v->required('contract_type')->in('Fixed', 'Hourly'); # contract type is enum, 
+      },
+      rate => sub ( $v ) {
+        $v->required('rate')->like( qr/\d+/ );
+      },
+      currency => sub ( $v ) {
+         $v->required('currency')->like( qr/^[a-zA-Z]+$/ );
       }
     }
   });
