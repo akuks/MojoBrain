@@ -18,19 +18,15 @@ sub project_post ($c) {
   my %options;
 
   # Form Validation Plugin
-  foreach(qw/client_name project_name contract_type rate currency/) {
-    if ( $_ eq 'email') {
-      $c->form_validation->{ $_ }->( $v, $c->param('email') );
-    }
-    else {
-      $c->form_validation->{ $_ }->( $v );
-    }
-
+  foreach(qw/client_name name contract_type rate currency/) {
+    $c->form_validation->{ $_ }->( $v ) ;
     $options { $_ } = $c->param( $_ );
   }
 
   $options { user_id } = $c->session( 'user_id' );
+  print Data::Dumper::Dumper( $v );
 
+  return $c->render( json => { error => 'Good'} );
   return $c->render ( json => { error => 'Invalid form parameters are passed.' } ) if ( $v->has_error );
 
   my $output;
