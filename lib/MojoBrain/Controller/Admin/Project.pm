@@ -18,18 +18,19 @@ sub project_post ($c) {
   my %options;
 
   # Form Validation Plugin
-  foreach(qw/client_name name contract_type rate currency/) {
+  foreach(qw/client_name project_name contract_type rate currency/) {
     $c->form_validation->{ $_ }->( $v ) ;
     $options { $_ } = $c->param( $_ );
   }
 
   $options { user_id } = $c->session( 'user_id' );
-  print Data::Dumper::Dumper( $v );
 
-  return $c->render( json => { error => 'Good'} );
   return $c->render ( json => { error => 'Invalid form parameters are passed.' } ) if ( $v->has_error );
 
+  my $project = $c->app->db->resultset('Project')->create_update_project( \%options );
+
   my $output;
+  print Data::Dumper::Dumper( $project );
 
   $output->{message} = 'Client added/updated succesfully.';
   $output->{status} = 200;
