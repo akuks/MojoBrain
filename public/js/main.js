@@ -154,7 +154,7 @@ function generalFormSubmit ( formId ) {
     request.fail( function ( jqXHR, textStatus, errorThrown ) {
       /** Log error to console*/
       console.error(  "The following error occurred: " + textStatus, errorThrown );
-      let html = getHtmlResponse(textStatus, 1);
+      let html = getHtmlResponse(errorThrown, 1);
       $('#' + formId + '-response-message').html(html);
     });
 
