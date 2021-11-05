@@ -23,7 +23,7 @@
 
   <div class="w-full mb-2 mt-2">
     %= label_for name => 'Project Name', class => $label
-    %= text_field 'name', id => 'project_name', class => $input_class, placeholder => 'Design Landing Page'
+    %= text_field 'project_name', id => 'project_name', class => $input_class, placeholder => 'Design Landing Page'
   </div>
 
   <!-- Contract Type Fixed/Hourly -->
@@ -43,8 +43,8 @@
   </div>
 
   <div class="flex items-center justify-between mt-10">
-    <button class="<%= $button_class %>" type="submit" onclick="generalFormSubmit('create-clients-form')">Create</button>
+    <button class="<%= $button_class %>" type="submit" onclick="generalFormSubmit('create-projects-form')">Create</button>
   </div>
 
-  <div id='create-clients-form-response-message'></div>
+  <div id='create-projects-form-response-message'></div>
 %= end
