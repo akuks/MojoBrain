@@ -190,9 +190,25 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-11-03 16:44:20
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:PCveSqMYVtxu8kFscLQXeA
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-11-05 18:23:31
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:pyPGkB2H/ZmHyfER1XoeWQ
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
+
+=head1 UNIQUE CONSTRAINTS
+
+=head2 C<project_id>
+
+=over 4
+
+=item * L</project_id>
+
+=back
+
+=cut
+
+__PACKAGE__->add_unique_constraint("project_id", ["project_id"]);
+
+
 1;
