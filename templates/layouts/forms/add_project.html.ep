@@ -23,7 +23,7 @@
 
   <div class="w-full mb-2 mt-2">
     %= label_for name => 'Project Name', class => $label
-    %= text_field 'project_name', id => 'project_name', class => $input_class, placeholder => 'Design Landing Page'
+    %= text_field 'name', id => 'project_name', class => $input_class, placeholder => 'Design Landing Page'
   </div>
 
   <!-- Contract Type Fixed/Hourly -->
