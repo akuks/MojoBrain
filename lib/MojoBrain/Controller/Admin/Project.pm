@@ -20,7 +20,10 @@ sub project_post ($c) {
   # Form Validation Plugin
   foreach(qw/client_name project_name contract_type rate currency/) {
     $c->form_validation->{ $_ }->( $v ) ;
-    $options { $_ } = $c->param( $_ );
+    my $elem = ( $_ eq 'client_name' or $_ eq 'currency' )
+      ? ( $_ eq 'client_name' ? 'client_id' : 'currency_id' )
+      : $_ ;
+    $options { $elem } = $c->param( $_ );
   }
 
   $options { user_id } = $c->session( 'user_id' );
@@ -30,10 +33,13 @@ sub project_post ($c) {
   my $project = $c->app->db->resultset('Project')->create_update_project( \%options );
 
   my $output;
-  print Data::Dumper::Dumper( $project );
-
-  $output->{message} = 'Client added/updated succesfully.';
-  $output->{status} = 200;
+  if ( $project ) {
+    $output->{message} = 'Client added/updated succesfully.';
+    $output->{status} = 200;
+  }
+  else {
+    $output->{error} = 'Failed to add/update client.';
+  }
 
   $c->render( json => $output );
 }
