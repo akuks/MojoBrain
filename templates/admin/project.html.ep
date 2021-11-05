@@ -41,6 +41,6 @@
     pagination: true
   };
 
-  var projectList = new List('project-list', options);
+  let projectList = new List('project-list', options);
 
 </script>
