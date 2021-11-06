@@ -4,11 +4,13 @@ use Mojo::Base 'Mojolicious::Controller', -signatures;
 sub project ($c) {
   my $details  = $c->app->db->resultset('Client')->get_client_details( $c->session('user_id') );
   my $currency = $c->app->db->resultset('Currency')->get_all_currency();
+  my $projects = $c->app->db->resultset('Project')->get_project_details_by_user( $c->session('user_id') );
 
   $c->stash( 'module'   => 'Projects' );
   $c->stash( 'details'  => $details );
   $c->stash( 'currency' => $currency );
-  
+  $c->stash( 'projects' => $projects );
+
   $c->render( template => '/admin/project')
 }
 
