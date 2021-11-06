@@ -46,4 +46,21 @@ sub get_project_details_by_user ( $self, $user ) {
   return \@details
 }
 
+sub get_active_project_details_by_user ( $self, $user ) {
+  my @projects = $self->search(
+    { user_id => $user, status => 'Active' }
+  );
+
+  my @details = map { {
+      name          => $_->project_name,
+      contract_type => $_->contract_type,
+      start_date    => $_->created_at->strftime("%b %d, %Y"),
+      status        => $_->status,
+      client_name   => $_->client->name,
+      project_key   => $_->project_key
+  } } @projects;
+
+  return \@details
+}
+
 1;
