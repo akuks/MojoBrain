@@ -339,9 +339,24 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+=head2 tasks
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-11-03 16:44:20
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:pyfGz+8slri8x8tHQy8FVg
+Type: has_many
+
+Related object: L<MojoBrain::Schema::Result::Task>
+
+=cut
+
+__PACKAGE__->has_many(
+  "tasks",
+  "MojoBrain::Schema::Result::Task",
+  { "foreign.created_by" => "self.user_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
+
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-11-06 17:50:47
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:5/h3NKxTw3vch+yjp8ejqw
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
