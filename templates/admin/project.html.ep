@@ -1,6 +1,8 @@
 % extends 'layouts/admin/layout';
 % my $button_class = 'bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded focus:outline-none px-4 py-3 focus:shadow-outline transition duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-110 undefined';
 
+% my $projects = $c->stash( 'projects');
+
 <section class="py-5 px-6 bg-white shadow">
   <nav class="relative">
     <div class="flex items-center">
@@ -17,7 +19,31 @@
 
     </div>
   </nav>
+  
+  <table class="client-table table-auto w-full mt-5">
+    <thead>
+      <tr class="text-xs text-gray-500 text-left">
+        <th class="pb-3 font-medium">Title</th>
+        <th class="pb-3 font-medium">Client</th>
+        <th class="pb-3 font-medium">Start Date</th>
+        <th class="pb-3 font-medium">Action</th>
+      </tr>
+    </thead>
+    <tbody class="list">
+      
+      % foreach my $p ( @$projects ) {
+        <tr>
+          <td> <%= $p->{name} %> </td>
+          <td> <%= $p->{ client_name } %> </td>
+          <td> <%= $p->{ start_date } %> </td>
+        </tr>
+      % }
+    </tbody>
+
+   </table> 
 </section>
+
+
 
 %= include 'import/jquery_modal_import';
 %= include 'import/table';
