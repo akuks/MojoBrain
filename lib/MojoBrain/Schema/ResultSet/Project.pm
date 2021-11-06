@@ -35,12 +35,12 @@ sub get_project_details_by_user ( $self, $user ) {
   );
 
   my @details = map { {
-      name         => $_->name,
-      email        => $_->email,
-      status       => $_->status,
-      telephone    => $_->telephone,
-      company_name => $_->company_name,
-      client_id    => $_->client_id
+      name          => $_->project_name,
+      contract_type => $_->contract_type,
+      start_date    => $_->created_at->strftime("%b %d, %Y"),
+      status        => $_->status,
+      client_name   => $_->client->name,
+      project_key   => $_->project_key
   } } @projects;
 
   return \@details
