@@ -196,6 +196,21 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "RESTRICT", on_update => "RESTRICT" },
 );
 
+=head2 tasks
+
+Type: has_many
+
+Related object: L<MojoBrain::Schema::Result::Task>
+
+=cut
+
+__PACKAGE__->has_many(
+  "tasks",
+  "MojoBrain::Schema::Result::Task",
+  { "foreign.project_id" => "self.project_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 =head2 user
 
 Type: belongs_to
@@ -212,8 +227,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-11-06 09:58:02
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:SxrquS9uvradPrar2Mr6RA
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-11-06 17:50:47
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:wACdPeiePGFfp1kaeHJy6A
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
