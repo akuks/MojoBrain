@@ -94,6 +94,18 @@ __PACKAGE__->table("project");
   datetime_undef_if_invalid: 1
   is_nullable: 1
 
+=head2 status
+
+  data_type: 'enum'
+  extra: {list => ["Active","In Progress","On Hold","Closed","Completed"]}
+  is_nullable: 1
+
+=head2 project_key
+
+  data_type: 'varchar'
+  is_nullable: 1
+  size: 80
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -128,6 +140,16 @@ __PACKAGE__->add_columns(
     datetime_undef_if_invalid => 1,
     is_nullable => 1,
   },
+  "status",
+  {
+    data_type => "enum",
+    extra => {
+      list => ["Active", "In Progress", "On Hold", "Closed", "Completed"],
+    },
+    is_nullable => 1,
+  },
+  "project_key",
+  { data_type => "varchar", is_nullable => 1, size => 80 },
 );
 
 =head1 PRIMARY KEY
@@ -190,8 +212,8 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-11-05 18:23:31
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:pyPGkB2H/ZmHyfER1XoeWQ
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-11-06 09:58:02
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:SxrquS9uvradPrar2Mr6RA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
