@@ -31,7 +31,7 @@ sub create_update_project ( $self, $options ) {
 
 sub get_project_details_by_user ( $self, $user ) {
   my @projects = $self->search(
-    { user_id => $user }
+    { user_id => $user },
   );
 
   my @details = map { {
