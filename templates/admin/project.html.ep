@@ -41,7 +41,7 @@
                 </div>
                 <p class="text-sm text-gray-500">Information about recent tasks</p>
               </div>
-              <a class="ml-auto flex items-center py-2 px-3 text-xs text-white rounded <%= $button_class %>" href="#">
+              <a href="#create-tasks-form" data-modal="#create-tasks-form" class="ml-auto flex items-center py-2 px-3 text-xs text-white rounded <%= $button_class %>">
                 <span class="mr-1">
                   <svg class="h-4 w-4 text-cyan-300" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M14.8334 0.666656H3.16675C1.75008 0.666656 0.666748 1.74999 0.666748 3.16666V14.8333C0.666748 16.25 1.75008 17.3333 3.16675 17.3333H14.8334C16.2501 17.3333 17.3334 16.25 17.3334 14.8333V3.16666C17.3334 1.74999 16.2501 0.666656 14.8334 0.666656ZM12.3334 9.83332H9.83342V12.3333C9.83342 12.8333 9.50008 13.1667 9.00008 13.1667C8.50008 13.1667 8.16675 12.8333 8.16675 12.3333V9.83332H5.66675C5.16675 9.83332 4.83342 9.49999 4.83342 8.99999C4.83342 8.49999 5.16675 8.16666 5.66675 8.16666H8.16675V5.66666C8.16675 5.16666 8.50008 4.83332 9.00008 4.83332C9.50008 4.83332 9.83342 5.16666 9.83342 5.66666V8.16666H12.3334C12.8334 8.16666 13.1667 8.49999 13.1667 8.99999C13.1667 9.49999 12.8334 9.83332 12.3334 9.83332Z" fill="currentColor"></path>
@@ -86,6 +86,9 @@
 %= include 'import/table';
 
 %= include 'layouts/forms/add_project';
+
+<!-- Add Task Form -->
+%= include 'layout/forms/add_task';
 
 <script>
   $(function() {
