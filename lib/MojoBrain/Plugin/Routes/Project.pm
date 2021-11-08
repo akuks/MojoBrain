@@ -8,8 +8,8 @@ sub register ($self, $app, $config) {
   $proj->get('/')->to('Admin::Project#project');
   $proj->post('/')->to('Admin::Project#project_post');
   # Individual Project details
-  $proj->get('/:project_id')->to('Admin::Project#project_details');
-
+  $proj->get('/:project_key')->to('Admin::Project#project_details');
+  $proj->post('/:project_key/task')->to('Admin::Project#add_task');
   return;
 }
 
