@@ -48,7 +48,7 @@ sub project_post ($c) {
 
 sub project_details ( $c ) {
   my $user_id = $c->session( 'user_id' );
-  my $project_key = $c->param( 'project_id' );
+  my $project_key = $c->param( 'project_key' );
 
   my $project = $c->app->db->resultset('Project')->get_individual_project_details( $user_id, $project_key );
   
@@ -60,6 +60,60 @@ sub project_details ( $c ) {
   $c->stash( 'project' => $project) ;
   
   $c->render( template => 'admin/project_details');
+}
+
+sub add_task ( $c ) {
+  my $v = $c->validation;
+
+  my $project_key = $c->param( 'project_key' );
+  my $project_id  = $c->param( 'project_id' );
+
+  my %options;
+  my $output ;
+
+  # Check if task is duplicate
+  my $task = $c->app->db->resultset('Task')->get_task_by_project_id( 
+    $project_id, $c->param( 'name'), $c->session( 'user_id' ) 
+  );
+
+  # Return if duplicate task is found
+  if ( $task ) {
+    $output->{error} = 'Duplicate task name.' ; 
+    return $c->render ( json => $output );
+  }
+  
+  # Parameter validation
+  foreach(qw/name description due_date/) {
+    my $elem ;
+
+    if ( $_ eq 'due_date' ) {
+      $elem = 'date';
+      $c->form_validation->{ $elem }->( $v, $_ ) ;
+    }
+    else {
+      $c->form_validation->{ $_ }->( $v ) ;
+    }
+
+    $elem =  ( $_ eq 'name' ) ? 'title' : $_; # Match with database column name
+    $options { $elem } = $c->param( $_ );
+  }
+  
+  return $c->render ( json => { error => 'Invalid form parameters are passed.' } ) if ( $v->has_error );
+
+  $options { 'project_id' } = $project_id;
+  $options { 'created_by' } = $c->session( 'user_id' );
+
+  $task = $c->app->db->resultset('Task')->create_update_task( \%options );
+
+  if ( $task ) {
+    $output->{message} = 'Client added/updated succesfully.';
+    $output->{status} = 200;
+  }
+  else {
+    $output->{error} = 'Failed to add/update client.';
+  }
+  
+  $c->render ( json => $output );
 }
 
 1;
