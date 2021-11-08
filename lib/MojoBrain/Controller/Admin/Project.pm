@@ -46,4 +46,9 @@ sub project_post ($c) {
   $c->render( json => $output );
 }
 
+sub project_details ( $c ) {
+  print $c->param( 'project_id' ), "\n";
+  $c->render( template => 'admin/project_details');
+}
+
 1;
