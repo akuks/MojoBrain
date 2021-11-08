@@ -401,3 +401,20 @@
     </section>
   </div>
 </section>
+
+%= include 'import/jquery_modal_import';
+%= include 'import/table';
+
+<!-- Add Task Form -->
+%= include 'layouts/forms/add_task';
+
+<script>
+  $(function() {
+    $('a[data-modal]').on('click', function(e) {
+      $(this).modal({
+        fadeDuration: 100
+      });
+      return false;
+    });
+  });
+</script>
