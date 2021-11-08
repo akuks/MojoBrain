@@ -75,6 +75,12 @@ sub register ($self, $app, $config) {
       },
       currency => sub ( $v ) {
          $v->required('currency')->like( qr/^[\d+]+$/ );
+      },
+      description => sub ( $v ) {
+        $v->optional('description')->like( qr/^$|^[a-zA-Z0-9 \r\n]/ );
+      },
+      date => sub ( $v, $date ) {
+        $v->required( $date )->like( qr/^(\d\d\d\d)-(\d\d)-(\d\d)$/ );
       }
     }
   });
