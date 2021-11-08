@@ -294,18 +294,16 @@
                 </button>
               </div>
               <div class="flex mb-2 justify-between items-center">
-                <h4 class="text-xs font-medium">Start</h4>
-                <span class="inline-block py-1 px-2 rounded-full bg-green-50 text-xs text-green-500">08 March
-                  2021</span>
+                <h4 class="text-xs font-medium">PAID</h4>
+                <span class="inline-block py-1 px-2 rounded-full bg-green-50 text-xs text-green-500">$0.00</span>
               </div>
               <div class="flex mb-2 justify-between items-center">
-                <h4 class="text-xs font-medium">Final Date</h4>
-                <span class="inline-block py-1 px-2 rounded-full bg-red-50 text-xs text-red-500">14 March
-                  2021</span>
+                <h4 class="text-xs font-medium">OVERDUE</h4>
+                <span class="inline-block py-1 px-2 rounded-full bg-red-50 text-xs text-red-500">$0.00</span>
               </div>
               <div class="flex mb-5 justify-between items-center">
-                <h4 class="text-xs font-medium">Last Change</h4>
-                <span class="text-xs text-cyan-500 font-medium">6 days ago</span>
+                <h4 class="text-xs font-medium">OUTSTANDING</h4>
+                <span class="inline-block py-1 px-2 rounded-full bg-gray-200 text-xs text-cyan-500 font-medium">$0.00</span>
               </div>
               <div class="flex items-ceenter justify-between border-t border-gray-50 pt-4">
                 <a class="py-2 px-3 bg-cyan-500 hover:bg-cyan-600 rounded text-xs text-white transition duration-200"
@@ -336,22 +334,21 @@
                 </button>
               </div>
               <div class="flex mb-2 justify-between items-center">
-                <h4 class="text-xs font-medium">Start</h4>
-                <span class="inline-block py-1 px-2 rounded-full bg-green-50 text-xs text-green-500">08 March
-                  2021</span>
+                <h4 class="text-xs font-medium">BILLED HOURS</h4>
+                <span class="inline-block py-1 px-2 rounded-full bg-green-50 text-xs text-green-500">00:00:00</span>
               </div>
+              <br />
               <div class="flex mb-2 justify-between items-center">
-                <h4 class="text-xs font-medium">Final Date</h4>
-                <span class="inline-block py-1 px-2 rounded-full bg-red-50 text-xs text-red-500">14 March
-                  2021</span>
+                <h4 class="text-xs font-medium">UNBILLED HOURS</h4>
+                <span class="inline-block py-1 px-2 rounded-full bg-red-50 text-xs text-red-500">00:00:00</span>
               </div>
               <div class="flex mb-5 justify-between items-center">
-                <h4 class="text-xs font-medium">Last Change</h4>
-                <span class="text-xs text-cyan-500 font-medium">6 days ago</span>
+                <h4 class="text-xs font-medium"></h4>
+                <span class="text-xs text-cyan-500 font-medium"></span>
               </div>
               <div class="flex items-ceenter justify-between border-t border-gray-50 pt-4">
                 <a class="py-2 px-3 bg-cyan-500 hover:bg-cyan-600 rounded text-xs text-white transition duration-200"
-                  href="#">Invoices Details</a>
+                  href="#">Work Diary</a>
               </div>
             </div>
           </div>
@@ -378,27 +375,27 @@
                 </button>
               </div>
               <div class="flex mb-2 justify-between items-center">
-                <h4 class="text-xs font-medium">Start</h4>
-                <span class="inline-block py-1 px-2 rounded-full bg-green-50 text-xs text-green-500">08 March
-                  2021</span>
+                <h4 class="text-xs font-medium">Proposal</h4>
+                <span class="inline-block py-1 px-2 rounded-full bg-green-50 text-xs text-green-500">Upload</span>
               </div>
+              
+              <br />
+
               <div class="flex mb-2 justify-between items-center">
-                <h4 class="text-xs font-medium">Final Date</h4>
-                <span class="inline-block py-1 px-2 rounded-full bg-red-50 text-xs text-red-500">14 March
-                  2021</span>
+                <h4 class="text-xs font-medium">Contract</h4>
+                <span class="inline-block py-1 px-2 rounded-full bg-red-50 text-xs text-red-500">Upload</span>
               </div>
-              <div class="flex mb-5 justify-between items-center">
-                <h4 class="text-xs font-medium">Last Change</h4>
-                <span class="text-xs text-cyan-500 font-medium">6 days ago</span>
-              </div>
+              
+              <br />
+              
               <div class="flex items-ceenter justify-between border-t border-gray-50 pt-4">
                 <a class="py-2 px-3 bg-cyan-500 hover:bg-cyan-600 rounded text-xs text-white transition duration-200"
-                  href="#">Invoices Details</a>
+                  href="#">All Documents</a>
               </div>
+
             </div>
           </div>
 
-          
         </div>
       </div>
     </section>
