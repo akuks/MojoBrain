@@ -3,14 +3,10 @@
 % my $select_class = 'shadow appearance-none border rounded w-full py-2 px-2 text-gray-400 leading-tight px-4 py-4 focus:outline-none focus:shadow-outline form-select';
 % my $button_class = 'bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded focus:outline-none px-4 py-3 focus:shadow-outline transition duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-110 undefined';
 
-<link
-  href="https://cdn.jsdelivr.net/npm/@tailwindcss/custom-forms@0.2.1/dist/custom-forms.min.css" rel="stylesheet"
-/>
-
 %= form_for '/tasks', id => 'create-tasks-form', method => 'POST', class => 'bg-white shadow-2xl rounded px-8 pt-6 pb-8 mb-4 mt-4 modal' => begin 
   %= csrf_field
-  <div id="project-signup-box" class="text-center mb-4">
-    <div id="project-setting-box" class="font-bold text-xl text-gray-600"> 
+  <div id="task-signup-box" class="text-center mb-4">
+    <div id="task-setting-box" class="font-bold text-xl text-gray-600"> 
         <h1>Add New Tasks</h1>
     </div>
   </div>
@@ -22,8 +18,8 @@
   </div>
 
   <div class="w-full mb-2 mt-2">
-    %= label_for name => 'Project Name', class => $label
-    %= text_field 'project_name', id => 'project_name', class => $input_class, placeholder => 'Design Landing Page'
+    %= label_for name => 'task Name', class => $label
+    %= text_field 'task_name', id => 'task_name', class => $input_class, placeholder => 'Design Landing Page'
   </div>
 
   <!-- Contract Type Fixed/Hourly -->
