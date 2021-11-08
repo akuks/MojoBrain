@@ -51,7 +51,11 @@
                     </svg>
                   </span>
                   <div>
-                    <h4 class="text-sm font-medium"><%= $p->{ name } %> </h4>
+                    <h4 class="text-sm font-medium">
+                      <a href='/projects/<%= $p->{ project_key } %>'>
+                          <%= $p->{ name } %> 
+                      </a>
+                    </h4>
                     <p class="text-xs text-gray-500"> <%= $p->{client_name} %> </p>
                     <p class="text-xs text-gray-500"> Start Date: <%= $p->{ start_date } %> </p>
                   </div>
@@ -118,8 +122,6 @@
     </div>
   </section>
 
-
-
 %= include 'import/jquery_modal_import';
 %= include 'import/table';
 
@@ -138,12 +140,6 @@
       return false;
     });
 
-    $('#open-create-task').on('click', function (e) {
-      $(this).modal({
-        fadeDuration: 100
-      });
-      return false;
-    })
   });
 
   // Options setup the table
