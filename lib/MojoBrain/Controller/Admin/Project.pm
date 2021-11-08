@@ -47,7 +47,18 @@ sub project_post ($c) {
 }
 
 sub project_details ( $c ) {
-  print $c->param( 'project_id' ), "\n";
+  my $user_id = $c->session( 'user_id' );
+  my $project_key = $c->param( 'project_id' );
+
+  my $project = $c->app->db->resultset('Project')->get_individual_project_details( $user_id, $project_key );
+  
+  # If invalid project_id passed
+  $c->redirect_to('/projects') if ( !$project ); 
+  
+
+  # Might be change in future
+  $c->stash( 'project' => $project) ;
+  
   $c->render( template => 'admin/project_details');
 }
 
