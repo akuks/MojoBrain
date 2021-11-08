@@ -12,31 +12,29 @@
   </div>
   <hr/>
 
+  %= hidden_field project_key => $c->stash('project')->project_key
+
   <div class="w-full mb-2 mt-2">
-    %= label_for name => 'Client', class => $label
-    %= select_field 'client_name' => [c(Client => ['Select...', map { [ $_->{ name } => $_->{ client_id } ] } @$details ], id => 'client_name')], class => $select_class
+    %= label_for name => 'Task Name', class => $label
+    %= text_field 'title', id => 'task_name', class => $input_class, placeholder => 'Design Landing Page'
   </div>
 
   <div class="w-full mb-2 mt-2">
-    %= label_for name => 'task Name', class => $label
-    %= text_field 'task_name', id => 'task_name', class => $input_class, placeholder => 'Design Landing Page'
-  </div>
-
-  <!-- Contract Type Fixed/Hourly -->
-  <div class="w-full mb-2 mt-2">
-    %= label_for name => 'Contract Type', class => $label
-    %= select_field 'contract_type' => [ 'Fixed', 'Hourly' ], id => 'contract_type', class => $input_class, placeholder => 'Design Landing Page'
+    %= label_for name => 'Description', class => $label
+    %= text_area 'description', id => 'task_description', class => $input_class, placeholder => 'Task Description', rows => 5
   </div>
 
   <div class="w-full mb-2 mt-2">
-    %= label_for name => 'Rate', class => $label
-    %= number_field 'rate', id => 'rate', class => $input_class, placeholder => 'Rate'
+    %= label_for name => 'Due Date', class => $label
+    %= text_field 'due_date', id => 'task_due_date', class => $input_class, placeholder => 'Due Date'
   </div>
 
   <div class="w-full mb-2 mt-2">
-    %= label_for currency => 'Currency', class => $label
-    %= select_field 'currency' => [c(Currency => ['Select...', map { [ $_->{ country} . ' ( ' . $_->{ short_name } . ' ) ' => $_->{ id } ] } @$currency ], id => 'currency')], class => $select_class
+    %= label_for name => 'Project', class => $label
+    %= text_field 'project_name', id => 'project_name', class => $input_class, value => $c->stash('project')->project_name, disabled => 'disabled'
   </div>
+  
+  
 
   <div class="flex items-center justify-between mt-10">
     <button class="<%= $button_class %>" type="submit" onclick="generalFormSubmit('create-tasks-form')"> Add Task </button>
@@ -44,3 +42,17 @@
 
   <div id='create-tasks-form-response-message'></div>
 %= end
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css" />
+
+<script>
+  $(function() {
+    $( "#task_due_date" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      showAnim: 'drop',
+      dateFormat: "yy-mm-dd",
+      dayNamesMin : [ "S", "M", "T", "W", "T", "F", "S" ],
+    });
+  });
+</script>
