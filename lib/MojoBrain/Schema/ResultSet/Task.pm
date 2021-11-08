@@ -25,7 +25,7 @@ sub create_update_task ( $self, $options ) {
       );
     };
   }
-  print Data::Dumper::Dumper($@);
+  
   return $@ ? 0 : $task;
 }
 
