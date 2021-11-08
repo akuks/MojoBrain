@@ -3,7 +3,7 @@
 % my $select_class = 'shadow appearance-none border rounded w-full py-2 px-2 text-gray-400 leading-tight px-4 py-4 focus:outline-none focus:shadow-outline form-select';
 % my $button_class = 'bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded focus:outline-none px-4 py-3 focus:shadow-outline transition duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-110 undefined';
 
-%= form_for '/tasks', id => 'create-tasks-form', method => 'POST', class => 'bg-white shadow-2xl rounded px-8 pt-6 pb-8 mb-4 mt-4 modal' => begin 
+%= form_for '/projects/' . $c->stash('project')->project_key . '/task', id => 'create-tasks-form', method => 'POST', class => 'bg-white shadow-2xl rounded px-8 pt-6 pb-8 mb-4 mt-4 modal' => begin 
   %= csrf_field
   <div id="task-signup-box" class="text-center mb-4">
     <div id="task-setting-box" class="font-bold text-xl text-gray-600"> 
@@ -12,11 +12,11 @@
   </div>
   <hr/>
 
-  %= hidden_field project_key => $c->stash('project')->project_key
+  %= hidden_field project_id => $c->stash( 'project' )->project_id;
 
   <div class="w-full mb-2 mt-2">
     %= label_for name => 'Task Name', class => $label
-    %= text_field 'title', id => 'task_name', class => $input_class, placeholder => 'Design Landing Page'
+    %= text_field 'name', id => 'task_name', class => $input_class, placeholder => 'Add Task Name'
   </div>
 
   <div class="w-full mb-2 mt-2">
@@ -33,8 +33,6 @@
     %= label_for name => 'Project', class => $label
     %= text_field 'project_name', id => 'project_name', class => $input_class, value => $c->stash('project')->project_name, disabled => 'disabled'
   </div>
-  
-  
 
   <div class="flex items-center justify-between mt-10">
     <button class="<%= $button_class %>" type="submit" onclick="generalFormSubmit('create-tasks-form')"> Add Task </button>
