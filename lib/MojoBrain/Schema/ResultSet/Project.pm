@@ -46,9 +46,9 @@ sub get_project_details_by_user ( $self, $user ) {
   return \@details
 }
 
-sub get_active_project_details_by_user ( $self, $user ) {
+sub get_project_status_details_by_user ( $self, $user, $status ) {
   my @projects = $self->search(
-    { user_id => $user, status => 'Active' }
+    { user_id => $user, status => $status }
   );
 
   my @details = map { {
@@ -61,6 +61,15 @@ sub get_active_project_details_by_user ( $self, $user ) {
   } } @projects;
 
   return \@details
+}
+
+# get_individual_project_details
+sub get_individual_project_details ( $self, $user, $project_key ) {
+  my $project = $self->find({
+    project_key => $project_key, 
+    user_id => $user
+  });
+  return $project;
 }
 
 1;
