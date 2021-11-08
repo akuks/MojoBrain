@@ -41,14 +41,6 @@
                 </div>
                 <p class="text-sm text-gray-500">Information about recent tasks</p>
               </div>
-              <a href="#create-tasks-form" data-modal="#create-tasks-form" class="ml-auto flex items-center py-2 px-3 text-xs text-white rounded <%= $button_class %>">
-                <span class="mr-1">
-                  <svg class="h-4 w-4 text-cyan-300" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14.8334 0.666656H3.16675C1.75008 0.666656 0.666748 1.74999 0.666748 3.16666V14.8333C0.666748 16.25 1.75008 17.3333 3.16675 17.3333H14.8334C16.2501 17.3333 17.3334 16.25 17.3334 14.8333V3.16666C17.3334 1.74999 16.2501 0.666656 14.8334 0.666656ZM12.3334 9.83332H9.83342V12.3333C9.83342 12.8333 9.50008 13.1667 9.00008 13.1667C8.50008 13.1667 8.16675 12.8333 8.16675 12.3333V9.83332H5.66675C5.16675 9.83332 4.83342 9.49999 4.83342 8.99999C4.83342 8.49999 5.16675 8.16666 5.66675 8.16666H8.16675V5.66666C8.16675 5.16666 8.50008 4.83332 9.00008 4.83332C9.50008 4.83332 9.83342 5.16666 9.83342 5.66666V8.16666H12.3334C12.8334 8.16666 13.1667 8.49999 13.1667 8.99999C13.1667 9.49999 12.8334 9.83332 12.3334 9.83332Z" fill="currentColor"></path>
-                  </svg>
-                </span>
-                <span>Add Task</span>
-              </a>
             </div>
             % foreach my $p ( @$projects ) {
               <div class="flex justify-between items-center mb-2 p-4 bg-gray-50 rounded">
@@ -64,13 +56,59 @@
                     <p class="text-xs text-gray-500"> Start Date: <%= $p->{ start_date } %> </p>
                   </div>
                 </div>
+
                 <div class="flex items-center">
-                  <span class="inline-block mr-3 py-1 px-2 bg-cyan-50 text-xs text-cyan-500 rounded-full">3 tasks</span>
-                  <a href="#">
-                    <svg width="16" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M8 0.333344C7.67037 0.333344 7.34813 0.431092 7.07405 0.614228C6.79997 0.797363 6.58635 1.05766 6.4602 1.36221C6.33406 1.66675 6.30105 2.00186 6.36536 2.32516C6.42967 2.64846 6.5884 2.94543 6.82149 3.17852C7.05458 3.41161 7.35155 3.57034 7.67485 3.63465C7.99815 3.69896 8.33326 3.66596 8.63781 3.53981C8.94235 3.41366 9.20265 3.20004 9.38578 2.92596C9.56892 2.65188 9.66667 2.32965 9.66667 2.00001C9.66667 1.55798 9.49107 1.13406 9.17851 0.821499C8.86595 0.508939 8.44203 0.333344 8 0.333344ZM2.16667 0.333344C1.83703 0.333344 1.5148 0.431092 1.24072 0.614228C0.966635 0.797363 0.753014 1.05766 0.626868 1.36221C0.500722 1.66675 0.467717 2.00186 0.532025 2.32516C0.596334 2.64846 0.755068 2.94543 0.988156 3.17852C1.22124 3.41161 1.51822 3.57034 1.84152 3.63465C2.16482 3.69896 2.49993 3.66596 2.80447 3.53981C3.10902 3.41366 3.36931 3.20004 3.55245 2.92596C3.73559 2.65188 3.83333 2.32965 3.83333 2.00001C3.83333 1.55798 3.65774 1.13406 3.34518 0.821499C3.03262 0.508939 2.6087 0.333344 2.16667 0.333344ZM13.8333 0.333344C13.5037 0.333344 13.1815 0.431092 12.9074 0.614228C12.6333 0.797363 12.4197 1.05766 12.2935 1.36221C12.1674 1.66675 12.1344 2.00186 12.1987 2.32516C12.263 2.64846 12.4217 2.94543 12.6548 3.17852C12.8879 3.41161 13.1849 3.57034 13.5082 3.63465C13.8315 3.69896 14.1666 3.66596 14.4711 3.53981C14.7757 3.41366 15.036 3.20004 15.2191 2.92596C15.4023 2.65188 15.5 2.32965 15.5 2.00001C15.5 1.55798 15.3244 1.13406 15.0118 0.821499C14.6993 0.508939 14.2754 0.333344 13.8333 0.333344Z" fill="#67798E"></path>
-                    </svg>
-                  </a>
+                  <div class="">
+                      <div class="dropdown inline-block relative">
+                        <button class="text-gray-700 font-semibold py-2 px-4 inline-flex items-center">
+                          <span class="mr-2 ml-2">
+                              <svg width="128" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 0.333344C7.67037 0.333344 7.34813 0.431092 7.07405 0.614228C6.79997 0.797363 6.58635 1.05766 6.4602 1.36221C6.33406 1.66675 6.30105 2.00186 6.36536 2.32516C6.42967 2.64846 6.5884 2.94543 6.82149 3.17852C7.05458 3.41161 7.35155 3.57034 7.67485 3.63465C7.99815 3.69896 8.33326 3.66596 8.63781 3.53981C8.94235 3.41366 9.20265 3.20004 9.38578 2.92596C9.56892 2.65188 9.66667 2.32965 9.66667 2.00001C9.66667 1.55798 9.49107 1.13406 9.17851 0.821499C8.86595 0.508939 8.44203 0.333344 8 0.333344ZM2.16667 0.333344C1.83703 0.333344 1.5148 0.431092 1.24072 0.614228C0.966635 0.797363 0.753014 1.05766 0.626868 1.36221C0.500722 1.66675 0.467717 2.00186 0.532025 2.32516C0.596334 2.64846 0.755068 2.94543 0.988156 3.17852C1.22124 3.41161 1.51822 3.57034 1.84152 3.63465C2.16482 3.69896 2.49993 3.66596 2.80447 3.53981C3.10902 3.41366 3.36931 3.20004 3.55245 2.92596C3.73559 2.65188 3.83333 2.32965 3.83333 2.00001C3.83333 1.55798 3.65774 1.13406 3.34518 0.821499C3.03262 0.508939 2.6087 0.333344 2.16667 0.333344ZM13.8333 0.333344C13.5037 0.333344 13.1815 0.431092 12.9074 0.614228C12.6333 0.797363 12.4197 1.05766 12.2935 1.36221C12.1674 1.66675 12.1344 2.00186 12.1987 2.32516C12.263 2.64846 12.4217 2.94543 12.6548 3.17852C12.8879 3.41161 13.1849 3.57034 13.5082 3.63465C13.8315 3.69896 14.1666 3.66596 14.4711 3.53981C14.7757 3.41366 15.036 3.20004 15.2191 2.92596C15.4023 2.65188 15.5 2.32965 15.5 2.00001C15.5 1.55798 15.3244 1.13406 15.0118 0.821499C14.6993 0.508939 14.2754 0.333344 13.8333 0.333344Z" fill="#67798E"></path>
+                              </svg>
+                          </span>  
+                        </button>
+
+                        <ul class="dropdown-menu absolute hidden text-gray-700 pt-10 shadow">
+                          <li>
+                            <a href="#" class="rounded-t hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap">
+                              <small> Project </small>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="rounded-t hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap">
+                              <small>Work Diary</small>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="rounded-t hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap">
+                              <small>Send message to client</small>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="rounded-t hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap">
+                              <small>Propose new contract</small>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="rounded-t hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap">
+                              <small>Mark Completed</small>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="rounded-t hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap">
+                              <small>Archive</small>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="rounded-t hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap">
+                              <small>Delete</small>
+                            </a>
+                          </li>
+                        </ul>
+                        
+                      </div>
+                    </div>
+                    <span class="inline-block mr-3 py-1 px-2 bg-cyan-50 text-xs text-cyan-500 rounded-full">3 tasks</span>
                 </div>
               </div>
             % }
@@ -93,7 +131,14 @@
 <script>
   $(function() {
     $('a[data-modal]').on('click', function(e) {
-  
+
+      $(this).modal({
+        fadeDuration: 100
+      });
+      return false;
+    });
+
+    $('#open-create-task').on('click', function (e) {
       $(this).modal({
         fadeDuration: 100
       });
@@ -110,3 +155,19 @@
   let projectList = new List('project-list', options);
 
 </script>
+
+<script>
+  $(document).ready( function() {
+    $(".project-dropdown ul").hide();
+    $(".project-dropdown").click(function(){
+        $(this).children("ul").stop(true,true).fadeToggle("fast"),
+        $(this).toggleClass("dropdown-active");
+    });
+  });
+</script>
+
+<style>
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+</style>
