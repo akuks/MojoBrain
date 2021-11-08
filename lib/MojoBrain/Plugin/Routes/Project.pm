@@ -7,6 +7,8 @@ sub register ($self, $app, $config) {
   my $proj = $r->under('/projects')->to('Auth::Login#is_user_authenticated');
   $proj->get('/')->to('Admin::Project#project');
   $proj->post('/')->to('Admin::Project#project_post');
+  # Individual Project details
+  $proj->get('/:project_id')->to('Admin::Project#project_details');
 
   return;
 }
