@@ -37,6 +37,9 @@
                   <div class="text-xs">
                     <p class="font-medium"><%= $t->{title} %></p>
                     <p class="text-gray-500"><%= $t->{status} %></p>
+                    <p class="text-gray-500">
+                      <strong>Due Date:</strong> <%= $t->{due_date} %>
+                    </p>
                   </div>
                   <button class="ml-auto">
                     <svg width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
