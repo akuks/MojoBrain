@@ -40,7 +40,8 @@ sub get_project_details_by_user ( $self, $user ) {
       start_date    => $_->created_at->strftime("%b %d, %Y"),
       status        => $_->status,
       client_name   => $_->client->name,
-      project_key   => $_->project_key
+      project_key   => $_->project_key,
+      count         => $_->tasks->count
   } } @projects;
 
   return \@details
@@ -48,7 +49,8 @@ sub get_project_details_by_user ( $self, $user ) {
 
 sub get_project_status_details_by_user ( $self, $user, $status ) {
   my @projects = $self->search(
-    { user_id => $user, status => $status }
+    { user_id => $user, status => $status },
+    { prefetch => 'tasks' }
   );
 
   my @details = map { {
@@ -57,7 +59,8 @@ sub get_project_status_details_by_user ( $self, $user, $status ) {
       start_date    => $_->created_at->strftime("%b %d, %Y"),
       status        => $_->status,
       client_name   => $_->client->name,
-      project_key   => $_->project_key
+      project_key   => $_->project_key,
+      count         => $_->tasks->count
   } } @projects;
 
   return \@details
