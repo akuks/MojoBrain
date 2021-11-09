@@ -109,11 +109,15 @@
                             </a>
                           </li>
                         </ul>
-                        
                       </div>
+
                     </div>
-                    <span class="inline-block mr-3 py-1 px-2 bg-cyan-50 text-xs text-cyan-500 rounded-full">3 tasks</span>
-                </div>
+                    
+                    <span class="inline-block mr-3 py-1 px-2 bg-cyan-50 text-xs text-cyan-500 rounded-full">
+                      <%= ( $p->{ count } > 1 )  ? $p->{ count } . ' tasks' : $p->{ count } . ' task' %> 
+                    </span>
+                
+                  </div>
               </div>
             % }
           </div>
