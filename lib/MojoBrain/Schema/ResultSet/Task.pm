@@ -13,7 +13,7 @@ sub create_update_task ( $self, $options ) {
     eval {
       $task = $self->update_or_create(
         { %$options },
-        { key => 'project_id' }
+        { key => 'task_id' }
       );
     };
   }
