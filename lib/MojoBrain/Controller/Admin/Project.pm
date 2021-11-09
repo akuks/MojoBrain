@@ -63,11 +63,11 @@ sub project_details ( $c ) {
     due_date    => $_->due_date,
     status      => $_->status ? $_->status : 'Incomplete'
   } } $project->tasks ;
-  
+
   # Might be change in future
   $c->stash( 'project' => $project) ;
   $c->stash( 'tasks' => \@tasks );
-  
+
   $c->render( template => 'admin/project_details');
 }
 
