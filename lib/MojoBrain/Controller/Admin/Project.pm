@@ -54,10 +54,19 @@ sub project_details ( $c ) {
   
   # If invalid project_id passed
   $c->redirect_to('/projects') if ( !$project ); 
-  
 
+  my @tasks = map { { 
+    task_id     => $_->task_id,
+    project_id  => $_->project_id,
+    title       => $_->title,
+    description => $_->description,
+    due_date    => $_->due_date,
+    status      => $_->status ? $_->status : 'Incomplete'
+  } } $project->tasks ;
+  
   # Might be change in future
   $c->stash( 'project' => $project) ;
+  $c->stash( 'tasks' => \@tasks );
   
   $c->render( template => 'admin/project_details');
 }
