@@ -230,10 +230,74 @@ $( document ).on( 'click', ".remove-alert", function() {
 
 /**
 * Name: updateTaskStatus
-* Desc: Update the status of the task.
+* Desc: Update the status of the task. 
 */
 function updateTaskStatus(task, status) {
-  console.log(task);
-  console.log(status);
+
+  let path = window.location.pathname;
+
+  let request;
+
+  if ( request ) {
+    request.abort();          // Abort previous or pending requests
+  }
+
+  request = $.ajax({
+    type: 'POST',
+    url: path + '/task/update?status=' + status + '&task=' + task
+  });
+
+  request.done( function ( response, textStatus, jqXHR ) {
+      if ( response.status === 200 ) {
+        successDialog();  
+      }
+      else {
+        failedDialog();  
+      }
+    
+    });
+
+    request.fail( function ( jqXHR, textStatus, errorThrown ) {
+      /** Log error to console*/
+      console.error(  "The following error occurred: " + textStatus, errorThrown );
+      let html = getHtmlResponse(errorThrown, 1);
+      $('#' + task + '-response-message').html(html);
+    });
+}
+
+function successDialog () {
+  $( "#dialog-message" ).dialog({
+    width: 500,
+    modal: true,
+    buttons: [
+      {
+        text: "Close",
+        click: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    ]
+  });
+  
+  $(".ui-dialog-buttonpane button:contains('Close')")
+    .attr('style','background-color: rgba(6, 182, 212); color: white; position: relative; right: 200px;');
+}
+
+function failedDialog () {
+  $( "#dialog-message" ).dialog({
+    width: 500,
+    modal: true,
+    buttons: [
+      {
+        text: "Close",
+        click: function() {
+          $( this ).dialog( "close" );
+        }
+      }
+    ]
+  });
+
+  $(".ui-dialog-buttonpane button:contains('Close')")
+    .attr('style','background-color: #d34747; color: white; position: relative; right: 200px;');
 }
 
