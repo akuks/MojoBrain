@@ -35,14 +35,14 @@
                     </svg>
                   </span>
                   <div class="text-xs">
-                    <p class="font-medium"><%= $t->{title} %></p>
-                    <p class="text-gray-500"><%= $t->{status} %></p>
-                    <p class="text-gray-500">
+                    <p id="title_task_<%= $t->{ task_id } %>" class="font-medium"><%= $t->{title} %></p>
+                    <p id="status_task_<%= $t->{ task_id } %>" class="text-gray-500"><%= $t->{status} %></p>
+                    <p id="duedate_task_<%= $t->{ task_id } %>" class="text-gray-500">
                       <strong>Due Date:</strong> <%= $t->{due_date} %>
                     </p>
                   </div>
 
-                  <button class="ml-auto">
+                  <button class="ml-auto" onclick="updateTaskStatus('status_task_<%= $t->{ task_id } %>', 'Completed')">
                     <i title="Mark Completed" class="fa fa-check text-green-400"  aria-hidden="true"></i>
                   </button>
 
