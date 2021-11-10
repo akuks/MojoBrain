@@ -10,6 +10,7 @@ sub register ($self, $app, $config) {
   # Individual Project details
   $proj->get('/:project_key')->to('Admin::Project#project_details');
   $proj->post('/:project_key/task')->to('Admin::Project#add_task');
+  $proj->post('/:project_key/task/update')->to('Admin::Project#update_task');
   return;
 }
 
