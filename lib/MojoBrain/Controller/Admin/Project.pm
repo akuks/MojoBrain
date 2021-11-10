@@ -128,8 +128,8 @@ sub add_task ( $c ) {
 }
 
 sub update_task ( $c ) {
-
-  $output->{message} = 'Client added/updated succesfully.';
+  my $output ;
+  $output->{message} = 'Task status updated succesfully.';
   $output->{status} = 200;
   $c->render ( json => $output );
 }
