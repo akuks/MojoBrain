@@ -127,10 +127,25 @@ sub add_task ( $c ) {
   $c->render ( json => $output );
 }
 
+# update the task status
 sub update_task ( $c ) {
+
+  my @task = split(/_/, $c->param( 'task' ) );
+
+  my $task = $c->app->db->resultset('Task')->update_task_status( 
+    $c->param( 'status' ), $task[2], $c->param( 'project_key' )
+  );
+
   my $output ;
-  $output->{message} = 'Task status updated succesfully.';
-  $output->{status} = 200;
+
+  if ( $task ) {
+    $output->{message} = 'Task status updated succesfully.';
+    $output->{status} = 200;
+  }
+  else {
+    $output->{error} = 'Failed to update task.';
+  }
+  
   $c->render ( json => $output );
 }
 
