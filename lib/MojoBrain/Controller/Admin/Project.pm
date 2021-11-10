@@ -67,7 +67,7 @@ sub project_details ( $c ) {
   # Might be change in future
   $c->stash( 'project' => $project) ;
   $c->stash( 'tasks' => \@tasks );
-  $c->stash( 'module'   => 'Projects' );
+  $c->stash( 'module' => 'Projects' );
 
   $c->render( template => 'admin/project_details');
 }
@@ -103,8 +103,9 @@ sub add_task ( $c ) {
     else {
       $c->form_validation->{ $_ }->( $v ) ;
     }
-
-    $elem =  ( $_ eq 'name' ) ? 'title' : $_; # Match with database column name
+    # Match with database column name
+    # $elem = date will be overwritten to $elem = due_date in next step. 
+    $elem =  ( $_ eq 'name' ) ? 'title' : $_; 
     $options { $elem } = $c->param( $_ );
   }
   
@@ -123,6 +124,13 @@ sub add_task ( $c ) {
     $output->{error} = 'Failed to add/update client.';
   }
   
+  $c->render ( json => $output );
+}
+
+sub update_task ( $c ) {
+
+  $output->{message} = 'Client added/updated succesfully.';
+  $output->{status} = 200;
   $c->render ( json => $output );
 }
 
