@@ -227,3 +227,13 @@ $( document ).on( 'click', ".remove-alert", function() {
   $('#company-signup-form-response-message').html('');
 }); 
 
+
+/**
+* Name: updateTaskStatus
+* Desc: Update the status of the task.
+*/
+function updateTaskStatus(task, status) {
+  console.log(task);
+  console.log(status);
+}
+
