@@ -40,4 +40,26 @@ sub get_task_by_project_id ( $self, $project_id, $title, $user_id ) {
   return $task; 
 }
 
+# Update Task Status
+sub update_task_status ( $self, $status, $task_id, $project_key ) {
+  my $task = $self->search({
+    task_id => $task_id
+  });
+
+  if ( $task->count ) {
+    $task = $task->first;
+
+    my $task_project_key  = $task->project->project_key;
+    return 0 if ( $task_project_key ne $project_key ); # If invalid project key is passed
+
+    eval {
+      $task->update({
+        status => $status
+      });
+    };
+    return $@ ? 0 : $task
+  }
+  return 0
+}
+
 1;
