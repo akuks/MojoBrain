@@ -250,11 +250,11 @@ function updateTaskStatus(task, status) {
   request.done( function ( response, textStatus, jqXHR ) {
       if ( response.status === 200 ) {
         successDialog();  
+        $('#' + task).text(status);
       }
       else {
         failedDialog();  
       }
-    
     });
 
     request.fail( function ( jqXHR, textStatus, errorThrown ) {
@@ -284,7 +284,7 @@ function successDialog () {
 }
 
 function failedDialog () {
-  $( "#dialog-message" ).dialog({
+  $( "#dialog-message-failed" ).dialog({
     width: 500,
     modal: true,
     buttons: [
