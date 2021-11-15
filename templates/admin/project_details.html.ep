@@ -105,6 +105,13 @@
 <script>
   $(function() {
     $('a[data-modal]').on('click', function(e) {
+      $('#task_id').remove(); // Remove Task ID if there is any 
+
+      // Clear form elements if there are any
+      $('#task_name').val( '' );
+      $('#task_due_date').val( '' );
+      $('#task_description').val( '' );
+      
       $(this).modal({
         fadeDuration: 100
       });
