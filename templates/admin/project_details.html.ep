@@ -50,7 +50,7 @@
                     <i title="Mark Incomplete" class="fa fa-times text-gray-400"  aria-hidden="true"></i>
                   </button>
 
-                  <button class="ml-5">
+                  <button data-modal="#create-tasks-form" class="ml-5 py-6" onclick="editTask('status_task_<%= $t->{ task_id } %>')">
                     <i title="Edit Task" class="fa fa-pencil text-gray-500" aria-hidden="true"></i>
                   </button>
 
@@ -97,7 +97,7 @@
 %= include 'import/jquery_modal_import';
 %= include 'import/table';
 
-<!-- Add Task Form -->
+<!-- Add/Edit Task Form -->
 %= include 'layouts/forms/add_task';
 
 <script>
@@ -109,6 +109,25 @@
       return false;
     });
   });
+
+  function editTask ( status ) {
+    preFillFormValues( status );
+    $("#create-tasks-form").modal({
+      fadeDuration: 100
+    });
+    return false;
+  }
+  
+  function preFillFormValues ( status ) {
+    let task = status.split('_')[2];
+    
+    let title = $('#title_task_' + task).text();
+    let duedate = $('#duedate_task_' + task).text();
+
+    $('#task_name').val( title );
+    $('#task_due_date').val( duedate );
+  }
+  
 </script>
 
 <!-- Activate tooltip -->
