@@ -78,14 +78,15 @@ sub add_task ( $c ) {
 
   my $project_key = $c->param( 'project_key' );
   my $project_id  = $c->param( 'project_id' );
+  my $task_id     = $c->param( 'task_id' );
 
   my %options;
-  my $output ;
+  my ($task, $output);
 
   # Check if task is duplicate
-  my $task = $c->app->db->resultset('Task')->get_task_by_project_id( 
+  $task = $c->app->db->resultset('Task')->get_task_by_project_id( 
     $project_id, $c->param( 'name'), $c->session( 'user_id' ) 
-  );
+  ) if ( !$task_id );
 
   # Return if duplicate task is found
   if ( $task ) {
@@ -114,6 +115,7 @@ sub add_task ( $c ) {
 
   $options { 'project_id' } = $project_id;
   $options { 'created_by' } = $c->session( 'user_id' );
+  $options { 'task_id' }    = $task_id if ( $task_id ); # Only in case of edit task
 
   $task = $c->app->db->resultset('Task')->create_update_task( \%options );
 
