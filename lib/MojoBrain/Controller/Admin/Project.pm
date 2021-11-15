@@ -56,12 +56,13 @@ sub project_details ( $c ) {
   $c->redirect_to('/projects') if ( !$project ); 
 
   my @tasks = map { { 
-    task_id     => $_->task_id,
-    project_id  => $_->project_id,
-    title       => $_->title,
-    description => $_->description,
-    due_date    => $_->due_date->strftime("%b %d, %Y"),
-    status      => $_->status ? $_->status : 'Incomplete'
+    task_id      => $_->task_id,
+    project_id   => $_->project_id,
+    title        => $_->title,
+    description  => $_->description,
+    due_date     => $_->due_date->strftime("%b %d, %Y"),
+    status       => $_->status ? $_->status : 'Incomplete',
+    org_due_date => $_->due_date->strftime("%Y-%m-%d"),
   } } $project->tasks ;
 
   # Might be change in future
