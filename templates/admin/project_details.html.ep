@@ -40,6 +40,7 @@
                     <p id="duedate_task_<%= $t->{ task_id } %>" class="text-gray-500">
                       <strong>Due Date:</strong> <%= $t->{due_date} %>
                     </p>
+                    <p id="format_duedate_task_<%= $t->{ task_id } %>" style="display: none"><%= $t->{org_due_date} %></p>
                   </div>
 
                   <button href="#" class="ml-auto" onclick="updateTaskStatus('status_task_<%= $t->{ task_id } %>', 'Completed')">
@@ -122,7 +123,7 @@
     let task = status.split('_')[2];
     
     let title = $('#title_task_' + task).text();
-    let duedate = $('#duedate_task_' + task).text();
+    let duedate = $('#format_duedate_task_' + task).text();
 
     $('#task_name').val( title );
     $('#task_due_date').val( duedate );
