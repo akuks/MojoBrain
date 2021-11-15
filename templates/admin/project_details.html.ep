@@ -127,7 +127,7 @@
     let duedate = $('#format_duedate_task_' + task).text();
     let description = $('#description_task_' + task).text();
 
-    $(form).append('<input id="task_id" type="hidden" value="" >');
+    $(form).append('<input id="task_id" name="task_id" type="hidden" value="" >');
 
     $('#task_name').val( title );
     $('#task_due_date').val( duedate );
