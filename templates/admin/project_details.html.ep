@@ -37,6 +37,7 @@
                   <div class="text-xs">
                     <p id="title_task_<%= $t->{ task_id } %>" class="font-medium"><%= $t->{title} %></p>
                     <p id="status_task_<%= $t->{ task_id } %>" class="text-gray-500"><%= $t->{status} %></p>
+                    <p id="description_task_<%= $t->{ task_id } %>" style="display: none"><%= $t->{description} %></p>
                     <p id="duedate_task_<%= $t->{ task_id } %>" class="text-gray-500">
                       <strong>Due Date:</strong> <%= $t->{due_date} %>
                     </p>
@@ -112,21 +113,26 @@
   });
 
   function editTask ( status ) {
-    preFillFormValues( status );
+    preFillFormValues( status,  '#create-tasks-form' );
     $("#create-tasks-form").modal({
       fadeDuration: 100
     });
     return false;
   }
   
-  function preFillFormValues ( status ) {
+  function preFillFormValues ( status, form ) {
     let task = status.split('_')[2];
     
     let title = $('#title_task_' + task).text();
     let duedate = $('#format_duedate_task_' + task).text();
+    let description = $('#description_task_' + task).text();
+
+    $(form).append('<input id="task_id" type="hidden" value="" >');
 
     $('#task_name').val( title );
     $('#task_due_date').val( duedate );
+    $('#task_description').val( description );
+    $('#task_id').val( task );
   }
   
 </script>
