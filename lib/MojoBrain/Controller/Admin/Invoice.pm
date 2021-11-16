@@ -1,4 +1,4 @@
-package MojoBrain::Controller::Admin::Project;
+package MojoBrain::Controller::Admin::Invoice;
 use Mojo::Base 'Mojolicious::Controller', -signatures;
 
 sub show_invoice ( $c ) {
