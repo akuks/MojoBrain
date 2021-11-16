@@ -49,6 +49,11 @@ __PACKAGE__->table("stripe");
   data_type: 'text'
   is_nullable: 0
 
+=head2 user_id
+
+  data_type: 'bigint'
+  is_nullable: 1
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -56,11 +61,27 @@ __PACKAGE__->add_columns(
   { data_type => "text", is_nullable => 0 },
   "secret_key",
   { data_type => "text", is_nullable => 0 },
+  "user_id",
+  { data_type => "bigint", is_nullable => 1 },
 );
 
+=head1 UNIQUE CONSTRAINTS
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-11-16 18:33:57
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:R5xoCmG0S3jO80USeGjnWw
+=head2 C<user_id>
+
+=over 4
+
+=item * L</user_id>
+
+=back
+
+=cut
+
+__PACKAGE__->add_unique_constraint("user_id", ["user_id"]);
+
+
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-11-16 19:10:20
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:PMkrS6tVwIw11U8c3OoPiA
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
