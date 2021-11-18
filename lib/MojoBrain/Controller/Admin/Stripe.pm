@@ -4,6 +4,13 @@ use Mojo::Base 'Mojolicious::Controller', -signatures;
 sub stripe ( $c ) {
   $c->stash( 'module' => 'Stripe' );
 
+  $c->stash ( 'stripe' => sub {
+    my $stripe = $c->app->db->resultset( 'Stripe' )->find(
+      { user_id => $c->session( 'user_id' ) }
+    );
+    return $stripe;
+  } );
+
   $c->render( template => 'admin/stripe' );
 }
 
@@ -14,7 +21,8 @@ sub update_stripe ( $c ) {
 
   my %options = (
     publish_key => $c->param( 'publish_key' ),
-    secret_key  => $c->param( 'secret_key' )
+    secret_key  => $c->param( 'secret_key' ),
+    user_id     => $c->session('user_id')
   );
 
   return $c->render( error => 'Private and Publish keys cannot be left blank or null' ) 
@@ -27,7 +35,7 @@ sub update_stripe ( $c ) {
   };
 
   # If Stripe keys not updated
-  return $c->render ( error => 'Failed to update stripe keys' ) if $@;
+  return $c->render ( json => { message => 'Failed to update stripe keys' } ) if $@;
 
   $output->{ message } = 'Stripe Keys updated succesfully.';
   $output->{ status } = 200;
