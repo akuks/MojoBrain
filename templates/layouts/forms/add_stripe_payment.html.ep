@@ -1,0 +1,42 @@
+% my $label = 'block text-gray-700 text-sm font-bold mb-2';
+% my $input_class = 'shadow appearance-none border rounded w-full py-2 px-2 text-gray-700 leading-tight px-4 py-4 focus:outline-none focus:shadow-outline';
+% my $select_class = 'shadow appearance-none border rounded w-full py-2 px-2 text-gray-400 leading-tight px-4 py-4 focus:outline-none focus:shadow-outline form-select';
+% my $button_class = 'bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded focus:outline-none px-4 py-3 focus:shadow-outline transition duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-110 undefined';
+
+% my $projects = $c->stash( 'projects');
+
+<link
+  href="https://cdn.jsdelivr.net/npm/@tailwindcss/custom-forms@0.2.1/dist/custom-forms.min.css" rel="stylesheet"
+/>
+
+% my $stripe = $c->stash( 'stripe' )->();
+
+%= form_for '/admin/dashboard/stripe', id => 'create-stripe-form', method => 'POST', class => 'bg-white shadow-2xl rounded px-8 pt-6 pb-8 mb-4 mt-4 modal' => begin 
+  %= csrf_field
+  <div id="project-signup-box" class="text-center mb-4">
+    <div id="project-setting-box" class="font-bold text-xl text-gray-600"> 
+        <h1>
+            <%= $stripe->publish_key ? 'Update' : 'Create' %> Stripe APIs
+        </h1>
+    </div>
+  </div>
+  <hr/>
+
+  <div class="w-full mb-2 mt-2">
+    %= label_for name => 'Stripe Publish Key', class => $label
+    %= text_field 'publish_key', id => 'publish_key', class => $input_class, placeholder => 'Stripe Publish Key', required => 1, value => $stripe->publish_key ? $stripe->publish_key : ''
+  </div>
+
+  <div class="w-full mb-2 mt-2">
+    %= label_for name => 'Stripe Secret Key', class => $label
+    %= text_field 'secret_key', id => 'secret_key', class => $input_class, placeholder => $stripe->secret_key ? '*' x 55 : 'Stripe Secret Key', required => 1
+  </div>
+
+  <div class="flex items-center justify-between mt-10">
+    <button class="<%= $button_class %>" type="submit" onclick="generalFormSubmit('create-stripe-form')">
+      <%= $stripe->publish_key ? 'Update' : 'Create' %>
+    </button>
+  </div>
+
+  <div id='create-stripe-form-response-message'></div>
+%= end
