@@ -22,4 +22,7 @@ app:
         schema: MojoBrain::Schema
 apifile:
   - mojobrain-api.yml
+stripe:
+  publish_key: 'Your publish Key'
+  secret_key: 'Your secret Key'
 
