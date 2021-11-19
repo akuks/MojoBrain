@@ -33,6 +33,7 @@ sub signin_post ($c) {
       
       $c->session( user_exists => $c->is_user_exists($username, $password) );
       $c->session( user_id => $user_details->first->id );
+      $c->app->{stripe} = $c->get_stripe_details( $user_details->first->id ) ;
 
       return $c->session('user_exists');
     }
@@ -55,6 +56,7 @@ sub logout ($c) {
   $c->session(expires => 1);
   $c->session(user_exists => 0);
   $c->session(user_id => undef);
+  $c->session(stripe => undef);
 
   $c->flash( message => 'User logged out successfully.'); 
   $c->redirect_to( '/' );
@@ -74,6 +76,17 @@ sub is_user_exists($c, $username, $password) {
   $user = $user->first;
 
   return $c->bcrypt_validate($password || '', $user->password);
+}
+
+sub get_stripe_details ( $c, $user_id ) {
+  my $stripe = $c->app->db->resultset( 'Stripe' )->find(
+    { user_id => $user_id },
+    {
+      columns => [qw/ publish_key secret_key / ]
+    }
+  );
+  
+  return $stripe
 }
 
 sub _get_redirect_url ($url) {
