@@ -39,14 +39,6 @@ sub startup ($self) {
   $self->helper( msg => sub { MojoBrain::Message->new() }); #Message Handler
   $self->helper( jwt => sub { Mojo::JWT->new(secret => shift->app->secrets->[0] || die) } ); # Token Handler
 
-  # Normal route to controller
-  $self->plugin(
-    OpenAPI => { 
-      schema => 'v3',
-      url     => $self->home->rel_file($api_file),
-    }
-  );
-
   my $r = $self->routes;
 
   my $admin_get = $r->under('/admin/');
@@ -66,6 +58,15 @@ sub startup ($self) {
   $self->plugin( 'MojoBrain::Plugin::Routes::Profile' );
   $self->plugin( 'MojoBrain::Plugin::Routes::Client' );
   $self->plugin( 'MojoBrain::Plugin::Routes::Project' );
+  $self->plugin( 'MojoBrain::Plugin::Stripe' );
+
+  # Normal route to controller API's To be implemented
+  $self->plugin(
+    OpenAPI => { 
+      schema => 'v3',
+      url    => $self->home->rel_file($api_file),
+    }
+  );
 
 }
 
