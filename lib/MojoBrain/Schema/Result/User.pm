@@ -339,6 +339,21 @@ __PACKAGE__->has_many(
   { cascade_copy => 0, cascade_delete => 0 },
 );
 
+=head2 stripe_customers
+
+Type: has_many
+
+Related object: L<MojoBrain::Schema::Result::StripeCustomer>
+
+=cut
+
+__PACKAGE__->has_many(
+  "stripe_customers",
+  "MojoBrain::Schema::Result::StripeCustomer",
+  { "foreign.user_id" => "self.user_id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 =head2 tasks
 
 Type: has_many
@@ -355,8 +370,8 @@ __PACKAGE__->has_many(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-11-06 17:50:47
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:5/h3NKxTw3vch+yjp8ejqw
+# Created by DBIx::Class::Schema::Loader v0.07049 @ 2021-11-22 23:13:27
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:wyN+y1zKA5X1+VlcPLpiXQ
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
