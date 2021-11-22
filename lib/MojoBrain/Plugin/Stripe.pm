@@ -7,7 +7,15 @@ use Mojo::Base 'Mojolicious::Plugin', -signatures;
 
 sub register ( $self, $app, $config ) {
 
-  print Data::Dumper::Dumper( $app ); 
+  my ($secret_key, $publish_key);
+
+  my $stripe = $app->db->resultset('Stripe')->search({});
+  
+  if ( $stripe->count ) {
+    $stripe = $stripe->first;
+    $secret_key = $stripe->secret_key;
+    $publish_key = $stripe->publish_key;
+  }
 
   return;
 }
