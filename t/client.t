@@ -47,13 +47,13 @@ subtest 'Test Client' => sub {
 
   # Register a new client with incorrect form details
   $t->post_ok('/clients' => form => \%invalid_client)
-    ->status_is(201)
-    ->json_is('/message' => 'Unable to create client.');
+    ->status_is(200)
+    ->json_is('/message' => undef);
 
-  # Register a new client with incorrect form details
+  # Register a new client with correct form details
   $t->post_ok('/clients' => form => \%client)
-    ->status_is(201)
-    ->json_is('/message' => 'client created succesfully.');
+    ->status_is(200)
+    ->json_is('/message' => 'Client added/updated succesfully.');
 
 };
 
