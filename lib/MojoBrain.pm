@@ -58,6 +58,7 @@ sub startup ($self) {
   $self->plugin( 'MojoBrain::Plugin::Routes::Profile' );
   $self->plugin( 'MojoBrain::Plugin::Routes::Client' );
   $self->plugin( 'MojoBrain::Plugin::Routes::Project' );
+  $self->plugin( 'MojoBrain::Plugin::Routes::Invoice' );
   $self->plugin( 'MojoBrain::Plugin::Stripe' );
 
   # Normal route to controller API's To be implemented
