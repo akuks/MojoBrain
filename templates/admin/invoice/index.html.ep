@@ -1,4 +1,169 @@
 % extends 'layouts/admin/layout';
 % my $button_class = 'bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded focus:outline-none px-4 py-3 focus:shadow-outline transition duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-110 undefined';
 
-<p> List of All invoices </p>
+% my $projects = $c->stash( 'projects');
+
+<section class="py-5 px-6 bg-white shadow">
+  <nav class="relative">
+    <div class="flex items-center">
+      <div class="hidden lg:flex items-center mr-auto">
+        <button class="mr-2 text-gray-200">
+          <svg width="21" height="21" viewbox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.7 19.3L17 15.6C20.1 11.7 19.5 6 15.6 2.9C11.7 -0.2 5.99999 0.5 2.89999 4.3C-0.200006 8.2 0.499995 13.9 4.29999 17C7.59999 19.6 12.3 19.6 15.6 17L19.3 20.7C19.7 21.1 20.3 21.1 20.7 20.7C21.1 20.3 21.1 19.7 20.7 19.3ZM9.99999 17C6.09999 17 2.99999 13.9 2.99999 10C2.99999 6.1 6.09999 3 9.99999 3C13.9 3 17 6.1 17 10C17 13.9 13.9 17 9.99999 17Z" fill="currentColor"></path>
+          </svg>
+        </button>
+        <input class="pl-2 py-3 text-sm text-gray-200" type="text" placeholder="Type to search...">
+      </div>
+
+      <a href="#create-invoice-form" data-modal="#create-invoice-form" class="flex items-center <%= $button_class %>"> 
+          <span class="mr-1">
+            <svg class="h-4 w-4 text-cyan-300" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14.8334 0.666656H3.16675C1.75008 0.666656 0.666748 1.74999 0.666748 3.16666V14.8333C0.666748 16.25 1.75008 17.3333 3.16675 17.3333H14.8334C16.2501 17.3333 17.3334 16.25 17.3334 14.8333V3.16666C17.3334 1.74999 16.2501 0.666656 14.8334 0.666656ZM12.3334 9.83332H9.83342V12.3333C9.83342 12.8333 9.50008 13.1667 9.00008 13.1667C8.50008 13.1667 8.16675 12.8333 8.16675 12.3333V9.83332H5.66675C5.16675 9.83332 4.83342 9.49999 4.83342 8.99999C4.83342 8.49999 5.16675 8.16666 5.66675 8.16666H8.16675V5.66666C8.16675 5.16666 8.50008 4.83332 9.00008 4.83332C9.50008 4.83332 9.83342 5.16666 9.83342 5.66666V8.16666H12.3334C12.8334 8.16666 13.1667 8.49999 13.1667 8.99999C13.1667 9.49999 12.8334 9.83332 12.3334 9.83332Z" fill="currentColor"></path>
+            </svg>
+          </span>
+        <span>Create Invoice</span>
+      </a>
+
+    </div>
+  </nav>
+</section>
+
+<section class="py-8">
+    <div class="container px-4 mx-auto">
+      <div class="flex flex-wrap -mx-4">
+
+        <div class="w-full  px-4">
+          <div class="px-6 pb-6 pt-4 bg-white shadow rounded">
+            <div class="flex flex-wrap items-center mb-3">
+              <div>
+                <div class="flex items-center">
+                  <h3 class="mr-2 text-xl font-bold">Invoices</h3>
+                </div>
+                <p class="text-sm text-gray-500">Information about payments</p>
+              </div>
+            </div>
+            % foreach my $p ( @$projects ) {
+              <div class="flex justify-between items-center mb-2 p-4 bg-gray-50 rounded">
+                <div class="flex items-center">
+                  <span class="inline-flex w-10 h-10 mr-3 justify-center items-center bg-cyan-50 rounded">
+                    <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 12H5C4.73478 12 4.48043 12.1054 4.29289 12.2929C4.10536 12.4804 4 12.7348 4 13C4 13.2652 4.10536 13.5196 4.29289 13.7071C4.48043 13.8946 4.73478 14 5 14H9C9.26522 14 9.51957 13.8946 9.70711 13.7071C9.89464 13.5196 10 13.2652 10 13C10 12.7348 9.89464 12.4804 9.70711 12.2929C9.51957 12.1054 9.26522 12 9 12ZM13 2H11.82C11.6137 1.41645 11.2319 0.910998 10.7271 0.552938C10.2222 0.194879 9.61894 0.00173951 9 0H7C6.38106 0.00173951 5.7778 0.194879 5.27293 0.552938C4.76807 0.910998 4.38631 1.41645 4.18 2H3C2.20435 2 1.44129 2.31607 0.87868 2.87868C0.316071 3.44129 0 4.20435 0 5V17C0 17.7956 0.316071 18.5587 0.87868 19.1213C1.44129 19.6839 2.20435 20 3 20H13C13.7956 20 14.5587 19.6839 15.1213 19.1213C15.6839 18.5587 16 17.7956 16 17V5C16 4.20435 15.6839 3.44129 15.1213 2.87868C14.5587 2.31607 13.7956 2 13 2ZM6 3C6 2.73478 6.10536 2.48043 6.29289 2.29289C6.48043 2.10536 6.73478 2 7 2H9C9.26522 2 9.51957 2.10536 9.70711 2.29289C9.89464 2.48043 10 2.73478 10 3V4H6V3ZM14 17C14 17.2652 13.8946 17.5196 13.7071 17.7071C13.5196 17.8946 13.2652 18 13 18H3C2.73478 18 2.48043 17.8946 2.29289 17.7071C2.10536 17.5196 2 17.2652 2 17V5C2 4.73478 2.10536 4.48043 2.29289 4.29289C2.48043 4.10536 2.73478 4 3 4H4V5C4 5.26522 4.10536 5.51957 4.29289 5.70711C4.48043 5.89464 4.73478 6 5 6H11C11.2652 6 11.5196 5.89464 11.7071 5.70711C11.8946 5.51957 12 5.26522 12 5V4H13C13.2652 4 13.5196 4.10536 13.7071 4.29289C13.8946 4.48043 14 4.73478 14 5V17ZM11 8H5C4.73478 8 4.48043 8.10536 4.29289 8.29289C4.10536 8.48043 4 8.73478 4 9C4 9.26522 4.10536 9.51957 4.29289 9.70711C4.48043 9.89464 4.73478 10 5 10H11C11.2652 10 11.5196 9.89464 11.7071 9.70711C11.8946 9.51957 12 9.26522 12 9C12 8.73478 11.8946 8.48043 11.7071 8.29289C11.5196 8.10536 11.2652 8 11 8Z" fill="#2393B3"></path>
+                    </svg>
+                  </span>
+                  <div>
+                    <h4 class="text-sm font-medium">
+                      <a href='/projects/<%= $p->{ project_key } %>'>
+                          <%= $p->{ name } %> 
+                      </a>
+                    </h4>
+                    <p class="text-xs text-gray-500"> <%= $p->{client_name} %> </p>
+                    <p class="text-xs text-gray-500"> Start Date: <%= $p->{ start_date } %> </p>
+                  </div>
+                </div>
+
+                <div class="flex items-center">
+                  <div class="">
+                      <div class="dropdown inline-block relative">
+                        <button class="text-gray-700 font-semibold py-2 px-4 inline-flex items-center">
+                          <span class="mr-2 ml-2">
+                              <svg width="128" height="4" viewBox="0 0 16 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 0.333344C7.67037 0.333344 7.34813 0.431092 7.07405 0.614228C6.79997 0.797363 6.58635 1.05766 6.4602 1.36221C6.33406 1.66675 6.30105 2.00186 6.36536 2.32516C6.42967 2.64846 6.5884 2.94543 6.82149 3.17852C7.05458 3.41161 7.35155 3.57034 7.67485 3.63465C7.99815 3.69896 8.33326 3.66596 8.63781 3.53981C8.94235 3.41366 9.20265 3.20004 9.38578 2.92596C9.56892 2.65188 9.66667 2.32965 9.66667 2.00001C9.66667 1.55798 9.49107 1.13406 9.17851 0.821499C8.86595 0.508939 8.44203 0.333344 8 0.333344ZM2.16667 0.333344C1.83703 0.333344 1.5148 0.431092 1.24072 0.614228C0.966635 0.797363 0.753014 1.05766 0.626868 1.36221C0.500722 1.66675 0.467717 2.00186 0.532025 2.32516C0.596334 2.64846 0.755068 2.94543 0.988156 3.17852C1.22124 3.41161 1.51822 3.57034 1.84152 3.63465C2.16482 3.69896 2.49993 3.66596 2.80447 3.53981C3.10902 3.41366 3.36931 3.20004 3.55245 2.92596C3.73559 2.65188 3.83333 2.32965 3.83333 2.00001C3.83333 1.55798 3.65774 1.13406 3.34518 0.821499C3.03262 0.508939 2.6087 0.333344 2.16667 0.333344ZM13.8333 0.333344C13.5037 0.333344 13.1815 0.431092 12.9074 0.614228C12.6333 0.797363 12.4197 1.05766 12.2935 1.36221C12.1674 1.66675 12.1344 2.00186 12.1987 2.32516C12.263 2.64846 12.4217 2.94543 12.6548 3.17852C12.8879 3.41161 13.1849 3.57034 13.5082 3.63465C13.8315 3.69896 14.1666 3.66596 14.4711 3.53981C14.7757 3.41366 15.036 3.20004 15.2191 2.92596C15.4023 2.65188 15.5 2.32965 15.5 2.00001C15.5 1.55798 15.3244 1.13406 15.0118 0.821499C14.6993 0.508939 14.2754 0.333344 13.8333 0.333344Z" fill="#67798E"></path>
+                              </svg>
+                          </span>  
+                        </button>
+
+                        <ul class="dropdown-menu absolute hidden text-gray-700 pt-10 shadow">
+                          <li>
+                            <a href="/projects/<%= $p->{ project_key } %>" class="rounded-t hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap">
+                              <small> Project </small>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="rounded-t hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap">
+                              <small>Work Diary</small>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="rounded-t hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap">
+                              <small>Send message to client</small>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="rounded-t hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap">
+                              <small>Propose new contract</small>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="rounded-t hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap">
+                              <small>Mark Completed</small>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="rounded-t hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap">
+                              <small>Archive</small>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="#" class="rounded-t hover:bg-gray-200 py-2 px-4 block whitespace-no-wrap">
+                              <small>Delete</small>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+
+                    </div>
+                    
+                    <span class="inline-block mr-3 py-1 px-2 bg-cyan-50 text-xs text-cyan-500 rounded-full">
+                      <%= ( $p->{ count } > 1 )  ? $p->{ count } . ' tasks' : $p->{ count } . ' task' %> 
+                    </span>
+                
+                  </div>
+              </div>
+            % }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+%= include 'import/jquery_modal_import';
+%= include 'import/table';
+
+
+<script>
+  $(function() {
+    $('a[data-modal]').on('click', function(e) {
+
+      $(this).modal({
+        fadeDuration: 100
+      });
+      return false;
+    });
+
+  });
+
+  // Options setup the table
+  let options = {
+    valueNames: [ 'name', 'email', 'status', 'action' ],
+    pagination: true
+  };
+
+  let projectList = new List('project-list', options);
+
+</script>
+
+<script>
+  $(document).ready( function() {
+    $(".project-dropdown ul").hide();
+    $(".project-dropdown").click(function(){
+        $(this).children("ul").stop(true,true).fadeToggle("fast"),
+        $(this).toggleClass("dropdown-active");
+    });
+  });
+</script>
+
+<style>
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+</style>
