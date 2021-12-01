@@ -1,4 +1,4 @@
-% my $active = 'text-white bg-cyan-500 rounded';
+% my $active = 'text-white bg-cyan-500 hover:bg-cyan-600 rounded';
 % my $inactive = 'text-gray-500 hover:bg-indigo-50 rounded';
 % my $module = $c->stash( 'module' );
 <!-- Left Navigation Menu -->
@@ -110,7 +110,7 @@
           </a>
         </li>
         <li>
-          <a class="flex items-center pl-3 py-3 pr-4 text-gray-500 hover:bg-indigo-50 rounded" href="#">
+          <a class="flex items-center pl-3 py-3 pr-4 hover:bg-indigo-50 rounded <%= ( $module eq 'Invoices' ) ? $active : $inactive %>"" href="/invoices">
             <span class="inline-block mr-3">
               <svg class="text-gray-200 w-5 h-5" viewbox="0 0 20 16" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
