@@ -59,7 +59,11 @@ sub startup ($self) {
   $self->plugin( 'MojoBrain::Plugin::Routes::Client' );
   $self->plugin( 'MojoBrain::Plugin::Routes::Project' );
   $self->plugin( 'MojoBrain::Plugin::Routes::Invoice' );
+  $self->plugin( 'MojoBrain::Plugin::Routes::Subscription' );
+  
+  # Stripe Plugin
   $self->plugin( 'MojoBrain::Plugin::Stripe' );
+  
 
   # Normal route to controller API's To be implemented
   $self->plugin(
